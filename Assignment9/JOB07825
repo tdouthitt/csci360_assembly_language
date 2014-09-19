@@ -1,0 +1,654 @@
+1                    J E S 2  J O B  L O G  --  S Y S T E M  S Y S 1  --  N O D E  Z O S K C T R         
+0 
+ 00.53.20 JOB07825 ---- WEDNESDAY, 03 AUG 2011 ----
+ 00.53.20 JOB07825  IRR010I  USERID KC03DDB  IS ASSIGNED TO THIS JOB.
+ 00.53.20 JOB07825  ICH70001I KC03DDB  LAST ACCESS AT 00:53:20 ON WEDNESDAY, AUGUST 3, 2011
+ 00.53.20 JOB07825  $HASP373 KC03DDBA STARTED - INIT 1    - CLASS A - SYS SYS1
+ 00.53.20 JOB07825  IEF403I KC03DDBA - STARTED - TIME=00.53.20
+ 00.53.21 JOB07825  IEF404I KC03DDBA - ENDED - TIME=00.53.21
+ 00.53.21 JOB07825  $HASP395 KC03DDBA ENDED
+0------ JES2 JOB STATISTICS ------                                                                                                   
+-  03 AUG 2011 JOB EXECUTION DATE                                                                                                    
+-           84 CARDS READ                                                                                                            
+-          650 SYSOUT PRINT RECORDS                                                                                                  
+-            0 SYSOUT PUNCH RECORDS                                                                                                  
+-           46 SYSOUT SPOOL KBYTES                                                                                                   
+-         0.00 MINUTES EXECUTION TIME                                                                                                
+ !! END OF JES SPOOL FILE !!
+        1 //KC03DDBA JOB ,'TAYLOR DOUTHITT',MSGCLASS=H                            JOB07825
+        2 //STEP1   EXEC  PGM=ASSIST,PARM='MACRO=F'                                       
+        3 //STEPLIB   DD  DSN=KC02293.ASSIST.LOADLIB,DISP=SHR                             
+        4 //SYSPRINT  DD  SYSOUT=*                                                        
+        5 //SYSIN     DD  *                                                               
+        6 //          DD DSN=KC02314.SUMMER11.CSCI360.HW9.DRIVER,DISP=SHR                 
+        7 //FT05F001  DD DUMMY                                                            
+        8 //FT06F001  DD SYSOUT=*                                                         
+        9 //                                                                              
+ !! END OF JES SPOOL FILE !!
+ ICH70001I KC03DDB  LAST ACCESS AT 00:53:20 ON WEDNESDAY, AUGUST 3, 2011
+ IEF236I ALLOC. FOR KC03DDBA STEP1
+ IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IGD103I SMS ALLOCATED TO DDNAME
+ IEF237I DMY  ALLOCATED TO FT05F001
+ IEF237I JES2 ALLOCATED TO FT06F001
+ IEF142I KC03DDBA STEP1 - STEP WAS EXECUTED - COND CODE 0000
+ IGD104I KC02293.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+ IEF285I   KC03DDB.KC03DDBA.JOB07825.D0000102.?         SYSOUT        
+ IEF285I   KC03DDB.KC03DDBA.JOB07825.D0000101.?         SYSIN         
+ IGD104I KC02314.SUMMER11.CSCI360.HW9.DRIVER          RETAINED,  DDNAME=        
+ IEF285I   KC03DDB.KC03DDBA.JOB07825.D0000103.?         SYSOUT        
+ IEF373I STEP/STEP1   /START 2011215.0053
+ IEF374I STEP/STEP1   /STOP  2011215.0053 CPU    0MIN 00.01SEC SRB    0MIN 00.00SEC VIRT   584K SYS   280K EXT       4K SYS   11224K
+ IEF375I  JOB/KC03DDBA/START 2011215.0053
+ IEF376I  JOB/KC03DDBA/STOP  2011215.0053 CPU    0MIN 00.01SEC SRB    0MIN 00.00SEC
+ !! END OF JES SPOOL FILE !!
+1*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+0MACRO=F                                                                                                                             
+0                                                                                                               PAGE    1            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                       1 *                                                                                           
+                                       2 *  MACRO TO USE AN MVI FOLLOWED BY AN MVC TO MOVE A SPECIFIC                                
+                                       3 *  CHARACTER TO EACH BYTE OF A RECIEVING FIELD                                              
+                                       4 *                                                                                           
+                                       5          MACRO                                                                              
+                                       6 &FILL    FILL  &TARGET,&LEN,&CHAR                                                           
+                                       7 *                                                                                           
+                                       8          AIF   ('&TARGET' EQ '').CONT                                                       
+                                       9 *                                                                                           
+                                      10          AIF   ('&LEN' EQ '').CONT1                                                         
+                                      11 *                                                                                           
+                                      12          AIF   (&LEN EQ 0).CONT2                                                            
+                                      13 *                                                                                           
+                                      14          AIF   ('&CHAR' EQ '').CONT3                                                        
+                                      15 *                                                                                           
+                                      16          AGO   .STRT                                                                        
+                                      17 *                                                                                           
+                                      18 .CONT    MNOTE 'ERROR: TARGET IS MISSING'                                                   
+                                      19          MEXIT                                                                              
+                                      20 *                                                                                           
+                                      21 .CONT1   MNOTE 'ERROR: LENGTH IS MISSING'                                                   
+                                      22          MEXIT                                                                              
+                                      23 *                                                                                           
+                                      24 .CONT2   MNOTE 'ERROR: LENGTH IS ZERO'                                                      
+                                      25          MEXIT                                                                              
+                                      26 *                                                                                           
+                                      27 .CONT3   MNOTE 'ERROR: USING DEFAULT VALUE OF BLANK'                                        
+                                      28 *                                                                                           
+                                      29          LA    5,&TARGET                                                                    
+                                      30 *                                                                                           
+                                      31          MVI   &TARGET,C' '                                                                 
+                                      32 *                                                                                           
+                                      33          AGO   .MOVE                                                                        
+                                      34 *                                                                                           
+                                      35 .STRT    LA    5,&TARGET                                                                    
+                                      36 *                                                                                           
+                                      37          MVI   0(5),&CHAR                                                                   
+                                      38 *                                                                                           
+                                      39 .MOVE    MVC   1(&LEN-1,5),0(5)                                                             
+                                      40 *                                                                                           
+                                      41          MEND                                                                               
+                                      42 *                                                                                           
+                                      43 *  MACRO TO USE AN MVC FOLLOWED BY AN ED                                                    
+                                      44 *                                                                                           
+                                      45          MACRO                                                                              
+                                      46 &EDIT    EDIT  &DEST,&SEND,&PATT,&LENG                                                      
+                                      47 *                                                                                           
+                                      48          AIF   ('&DEST' EQ '').NEXT                                                         
+                                      49 *                                                                                           
+                                      50          AIF   ('&SEND' EQ '').NEXT1                                                        
+                                      51 *                                                                                           
+                                      52          AIF   ('&PATT' EQ '').NEXT2                                                        
+1                                                                                                               PAGE    2            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                      53 *                                                                                           
+                                      54          AIF   (&LENG EQ 0).NEXT3                                                           
+                                      55 *                                                                                           
+                                      56          AGO   .MVIT                                                                        
+                                      57 *                                                                                           
+                                      58 .NEXT    MNOTE 'ERROR: DESTINATION IS MISSING'                                              
+                                      59          MEXIT                                                                              
+                                      60 *                                                                                           
+                                      61 .NEXT1   MNOTE 'ERROR: SENDER IS MISSING'                                                   
+                                      62          MEXIT                                                                              
+                                      63 *                                                                                           
+                                      64 .NEXT2   MNOTE 'ERROR: PATTERN IS MISSING'                                                  
+                                      65          MEXIT                                                                              
+                                      66 *                                                                                           
+                                      67 .NEXT3   MNOTE 'ERROR: LENGTH IS ZERO'                                                      
+                                      68          MEXIT                                                                              
+                                      69 *                                                                                           
+                                      70 .MVIT    LA    6,&DEST                                                                      
+                                      71          MVC   0(&LENG,6),&PATT                                                             
+                                      72 *                                                                                           
+                                      73          ED    0(&LENG,6),&SEND                                                             
+                                      74 *                                                                                           
+                                      75          MEND                                                                               
+                                      76 **********************************************************************                      
+                                      77 *                                                                    *                      
+                                      78 *            Name:  DRIVER.                                          *                      
+                                      79 *                                                                    *                      
+                                      80 *        Function:  Test platform for macros.                        *                      
+                                      81 *                                                                    *                      
+                                      82 *           Input:  None.                                            *                      
+                                      83 *                                                                    *                      
+                                      84 *          Output:  Results of the tests.                            *                      
+                                      85 *                                                                    *                      
+                                      86 *     Entry Conds:  14 -- Return address to the operating            *                      
+                                      87 *                         system.                                    *                      
+                                      88 *                   15 -- Address of entry to the program.           *                      
+                                      89 *                                                                    *                      
+                                      90 *  Register Usage:   2 -- Used in addresses in macro tests.          *                      
+                                      91 *                   11 -- Second base register.                      *                      
+                                      92 *                   12 -- Base register.                             *                      
+                                      93 *                                                                    *                      
+                                      94 *      Exit Conds:  14 -- Return address to the operating            *                      
+                                      95 *                         system.                                    *                      
+                                      96 *                                                                    *                      
+                                      97 **********************************************************************                      
+1                                                                                                               PAGE    3            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                                                                                                                     
+                                                                                                                                     
+                                      99 **********************************************************************                      
+                                     100 *               The DRIVER program begins here.                      *                      
+                                     101 **********************************************************************                      
+                                     102 *                                                                                           
+ 000000                              103 DRIVER   CSECT                         Beginning of the program.                            
+                                     104 *                                                                                           
+                                     106 *                                                                                           
+                                     107 *  Standard entry linkage.                                                                  
+                                     108 *                                                                                           
+ 000000 90EC D00C            0000C   109          STM   14,12,12(13)            Store the registers in the save                      
+                                     110 *                                      area of the calling routine.                         
+                                     111 *                                                                                           
+ 000004 18CF                         112          LR    12,15                   Point register 12 at DRIVER.                         
+ 000000                              113          USING DRIVER,12               The base register is 12.                             
+                                     114 *                                                                                           
+ 000006 41E0 C53C            0053C   115          LA    14,DRIVSAV              Point register 14 at DRIVER's                        
+                                     116 *                                      save area.                                           
+ 00000A 50DE 0004            00004   117          ST    13,4(14)                Store the backward pointer.                          
+ 00000E 50ED 0008            00008   118          ST    14,8(13)                Store the forward pointer.                           
+ 000012 18DE                         119          LR    13,14                   Point register 13 at DRIVER's                        
+                                     120 *                                      save area.                                           
+                                     121 *                                                                                           
+                                     123 *                                                                                           
+ 000014 E020 C2C4 001A 002C4         124          XPRNT =C'1Results of testing macros',26   Print the title.                         
+                                     125 *                                                                                           
+                                     126 * The first block of code deals with the FILL macro.                                        
+                                     127 *                                                                                           
+ 00001A E020 C300 0001 00300         128          XPRNT =C'0',1                 Skip an extra 2 lines.                               
+ 000020 E020 C301 002F 00301         129          XPRNT =C'-Driver Message:  First we test the FILL macro.',47                       
+                                     130 *                                      Print a heading.                                     
+                                     131 *                                                                                           
+ 000026 E020 C330 0001 00330         132          XPRNT =C' ',1                                                                      
+ 00002C D209 C5A1 C2DE 005A1 002DE   133          MVC   PTARGET(10),=C'Test line.'                                                   
+                                     134 *                                      Illustrate the target area.                          
+ 000032 E020 C584 0045 00584         135          XPRNT   PLINE,69                                                                   
+                                     136 *                                                                                           
+                                     137 * These first four calls to FILL all have problems which should                             
+                                     138 * result in MNOTEs.                                                                         
+                                     139 *                                                                                           
+                                     140 FILL0    FILL  PTARGET,0,C'!'          Call with length 0.                                  
+                                     141+*                                                                                           
+                                     142+*                                                                                           
+                                     143+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: LENGTH IS ZERO                                                                   <-ERROR            
+                                     145 *                                                                                           
+                                     146 FILL00   FILL  PTARGET,0               Call with length 0 and                               
+                                     147+*                                                                                           
+                                     148+*                                                                                           
+                                     149+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: LENGTH IS ZERO                                                                   <-ERROR            
+                                     151 *                                      default fill character.                              
+                                     152 *                                                                                           
+                                     153 FILL000  FILL  PTARGET                 Call with missing length.                            
+                                     154+*                                                                                           
+                                     155+*                                                                                           
+1                                                                                                               PAGE    4            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+ ----->AS***MNOTE***    1,ERROR: LENGTH IS MISSING                                                                <-ERROR            
+                                     157 *                                                                                           
+                                     158 FILL0000 FILL  ,3                      Call with target missing.                            
+                                     159+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: TARGET IS MISSING                                                                <-ERROR            
+                                     161 *                                                                                           
+                                     162 FILL1    FILL  PTARGET,10,C'X'         Basic call.                                          
+                                     163+*                                                                                           
+                                     164+*                                                                                           
+                                     165+*                                                                                           
+                                     166+*                                                                                           
+                                     167+*                                                                                           
+ 000038 4150 C5A1            005A1   168+         LA    5,PTARGET                                                                    
+                                     169+*                                                                                           
+ 00003C 92E7 5000      00000         170+         MVI   0(5),C'X'                                                                    
+                                     171+*                                                                                           
+ 000040 D208 5001 5000 00001 00000   172+         MVC   1(10-1,5),0(5)                                                               
+                                     173+*                                                                                           
+ 000046 E020 C331 0029 00331         174          XPRNT =C'0Driver Message:  We expect "XXXXXXXXXX".',41                             
+                                     175 *                                      Print what we expect.                                
+ 00004C E020 C584 0045 00584         176          XPRNT PLINE,69                Print result.                                        
+                                     177 *                                                                                           
+                                     178 FILL2    FILL  PTARGET+1,8,C' '       Basic call.                                           
+                                     179+*                                                                                           
+                                     180+*                                                                                           
+                                     181+*                                                                                           
+                                     182+*                                                                                           
+                                     183+*                                                                                           
+ 000052 4150 C5A2            005A2   184+         LA    5,PTARGET+1                                                                  
+                                     185+*                                                                                           
+ 000056 9240 5000      00000         186+         MVI   0(5),C' '                                                                    
+                                     187+*                                                                                           
+ 00005A D206 5001 5000 00001 00000   188+         MVC   1(8-1,5),0(5)                                                                
+                                     189+*                                                                                           
+ 000060 E020 C35A 0029 0035A         190          XPRNT =C'0Driver Message:  We expect "X        X".',41                             
+                                     191 *                                      Print what we expect.                                
+ 000066 E020 C584 0045 00584         192          XPRNT PLINE,69                Print result.                                        
+ 00006C 9240 C5A1      005A1         193          MVI   PTARGET,C' '            Blank out the receiving                              
+ 000070 D208 C5A2 C5A1 005A2 005A1   194          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     195 *                                                                                           
+ 000076 4120 C5A1            005A1   196          LA    2,PTARGET               Call using a                                         
+                                     197 FILL3    FILL  0(2,0),10,C'?'          D(X,B) address.                                      
+                                     198+*                                                                                           
+                                     199+*                                                                                           
+                                     200+*                                                                                           
+                                     201+*                                                                                           
+                                     202+*                                                                                           
+ 00007A 4152 0000            00000   203+         LA    5,0(2,0)                                                                     
+                                     204+*                                                                                           
+ 00007E 926F 5000      00000         205+         MVI   0(5),C'?'                                                                    
+                                     206+*                                                                                           
+ 000082 D208 5001 5000 00001 00000   207+         MVC   1(10-1,5),0(5)                                                               
+                                     208+*                                                                                           
+ 000088 E020 C383 0029 00383         209          XPRNT =C'0Driver Message:  We expect "??????????".',41                             
+                                     210 *                                      Print what we expect.                                
+ 00008E E020 C584 0045 00584         211          XPRNT PLINE,69                Print result.                                        
+                                     212 *                                                                                           
+1                                                                                                               PAGE    5            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+ 000094 5820 C2B8            002B8   213          L     2,=F'1'                 Call using an implicit                               
+                                     214 FILL4    FILL  PTARGET+1(2),6,C' '     address.                                             
+                                     215+*                                                                                           
+                                     216+*                                                                                           
+                                     217+*                                                                                           
+                                     218+*                                                                                           
+                                     219+*                                                                                           
+ 000098 4152 C5A2            005A2   220+         LA    5,PTARGET+1(2)                                                               
+                                     221+*                                                                                           
+ 00009C 9240 5000      00000         222+         MVI   0(5),C' '                                                                    
+                                     223+*                                                                                           
+ 0000A0 D204 5001 5000 00001 00000   224+         MVC   1(6-1,5),0(5)                                                                
+                                     225+*                                                                                           
+ 0000A6 E020 C3AC 0029 003AC         226          XPRNT =C'0Driver Message:  We expect "??      ??".',41                             
+                                     227 *                                      Print what we expect.                                
+ 0000AC E020 C584 0045 00584         228          XPRNT PLINE,69                Print result.                                        
+ 0000B2 9240 C5A1      005A1         229          MVI   PTARGET,C' '            Blank out the receiving                              
+ 0000B6 D208 C5A2 C5A1 005A2 005A1   230          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     231 *                                                                                           
+ 0000BC E020 C3D5 0029 003D5         232          XPRNT =C'0Driver Message:  We expect " ++ ** ++ ".',41                             
+                                     233 *                                      Print what we expect.                                
+ 0000C2 4120 C584            00584   234          LA    2,PLINE                 Multiple                                             
+                                     235 FILL5    FILL  PTARGET,10              calls on                                             
+                                     236+*                                                                                           
+                                     237+*                                                                                           
+                                     238+*                                                                                           
+                                     239+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: USING DEFAULT VALUE OF BLANK                                                     <-ERROR            
+                                     241+*                                                                                           
+ 0000C6 4150 C5A1            005A1   242+         LA    5,PTARGET                                                                    
+                                     243+*                                                                                           
+ 0000CA 9240 C5A1      005A1         244+         MVI   PTARGET,C' '                                                                 
+                                     245+*                                                                                           
+ 0000CE D208 5001 5000 00001 00000   246+         MVC   1(10-1,5),0(5)                                                               
+                                     247+*                                                                                           
+                                     248 FILL6    FILL  30(0,2),2,C'+'          top of                                               
+                                     249+*                                                                                           
+                                     250+*                                                                                           
+                                     251+*                                                                                           
+                                     252+*                                                                                           
+                                     253+*                                                                                           
+ 0000D4 4150 201E            0001E   254+         LA    5,30(0,2)                                                                    
+                                     255+*                                                                                           
+ 0000D8 924E 5000      00000         256+         MVI   0(5),C'+'                                                                    
+                                     257+*                                                                                           
+ 0000DC D200 5001 5000 00001 00000   258+         MVC   1(2-1,5),0(5)                                                                
+                                     259+*                                                                                           
+                                     260 FILL7    FILL  33(0,2),2,C'*'          each                                                 
+                                     261+*                                                                                           
+                                     262+*                                                                                           
+                                     263+*                                                                                           
+                                     264+*                                                                                           
+                                     265+*                                                                                           
+ 0000E2 4150 2021            00021   266+         LA    5,33(0,2)                                                                    
+                                     267+*                                                                                           
+ 0000E6 925C 5000      00000         268+         MVI   0(5),C'*'                                                                    
+                                     269+*                                                                                           
+1                                                                                                               PAGE    6            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+ 0000EA D200 5001 5000 00001 00000   270+         MVC   1(2-1,5),0(5)                                                                
+                                     271+*                                                                                           
+                                     272 FILL8    FILL  36(0,2),2,C'+'          other.                                               
+                                     273+*                                                                                           
+                                     274+*                                                                                           
+                                     275+*                                                                                           
+                                     276+*                                                                                           
+                                     277+*                                                                                           
+ 0000F0 4150 2024            00024   278+         LA    5,36(0,2)                                                                    
+                                     279+*                                                                                           
+ 0000F4 924E 5000      00000         280+         MVI   0(5),C'+'                                                                    
+                                     281+*                                                                                           
+ 0000F8 D200 5001 5000 00001 00000   282+         MVC   1(2-1,5),0(5)                                                                
+                                     283+*                                                                                           
+ 0000FE E020 C584 0045 00584         284          XPRNT PLINE,69                Print result.                                        
+ 000104 9240 C5A1      005A1         285          MVI   PTARGET,C' '            Blank out the receiving                              
+ 000108 D208 C5A2 C5A1 005A2 005A1   286          MVC   PTARGET+1(9),PTARGET    field.                                               
+1                                                                                                               PAGE    7            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                                                                                                                     
+                                                                                                                                     
+                                     288 *                                                                                           
+                                     289 * The second block of code deals with the EDIT macro.                                       
+                                     290 *                                                                                           
+ 00010E E020 C300 0001 00300         291          XPRNT =C'0',1                 Skip an extra 2 lines.                               
+ 000114 E020 C278 0030 00278         292          XPRNT =C'-Driver Message:  Second we test the EDIT macro.',48                      
+                                     293 *                                      Print a heading.                                     
+ 00011A E020 C330 0001 00330         294          XPRNT =C' ',1                                                                      
+                                     295 *                                                                                           
+ 000120 9240 C5A1      005A1         296          MVI   PTARGET,C' '            Blank out the receiving                              
+ 000124 D208 C5A2 C5A1 005A2 005A1   297          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     298 *                                                                                           
+                                     299 * These first five calls to EDIT all have problems which should                             
+                                     300 * result in MNOTEs.                                                                         
+                                     301 *                                                                                           
+                                     302 EDIT1    EDIT  PTARGET,=PL3'12345',=X'402020202120',0                                       
+                                     303+*                                                                                           
+                                     304+*                                                                                           
+                                     305+*                                                                                           
+                                     306+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: LENGTH IS ZERO                                                                   <-ERROR            
+                                     308 *                                      Call with length 0.                                  
+                                     309 EDIT2    EDIT  PTARGET,=PL3'12345',,6                                                       
+                                     310+*                                                                                           
+                                     311+*                                                                                           
+                                     312+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: PATTERN IS MISSING                                                               <-ERROR            
+                                     314 *                                      Call with missing pattern.                           
+                                     315 *                                                                                           
+                                     316 EDIT3    EDIT  PTARGET,,=X'402020202120',6                                                  
+                                     317+*                                                                                           
+                                     318+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: SENDER IS MISSING                                                                <-ERROR            
+                                     320 *                                      Call with missing sending                            
+                                     321 *                                      field.                                               
+                                     322 EDIT4    EDIT  ,=PL3'12345',=X'202020202120',6                                              
+                                     323+*                                                                                           
+ ----->AS***MNOTE***    1,ERROR: DESTINATION IS MISSING                                                           <-ERROR            
+                                     325 *                                      Call with missing receiving                          
+                                     326 *                                      field.                                               
+                                     327 EDIT5    EDIT  PTARGET,=PL3'12345',=X'402020202120'                                         
+                                     328+*                                                                                           
+                                     329+*                                                                                           
+                                     330+*                                                                                           
+                                     331+*                                                                                           
+ ----->AS224 INVALID CONVERSION, CHAR TO ARITH: STMT/MACRO    54/EDIT    -->                                      <-ERROR            
+                                     332+*                                                                                           
+ 00012A 4160 C5A1            005A1   333+         LA    6,PTARGET                                                                    
+ 00012E D200 6000 C2E8 00000 002E8   334+         MVC   0(,6),=X'402020202120'                                                       
+                                     335+*                                                                                           
+ 000134 DE05 6000 C3FE 00000 003FE   336+         ED    0(,6),=PL3'12345'                                                            
+                                     337+*                                                                                           
+                                     338 *                                      Call with missing length.                            
+ 00013A E020 C401 0025 00401         339          XPRNT =C'0Driver Message:  We expect " 12345".',37                                 
+                                     340 *                                      Print what we expect.                                
+                                     341 EDIT6    EDIT  PTARGET,=P'12345',=X'402020202120',6                                         
+1                                                                                                               PAGE    8            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                     342+*                                                                                           
+                                     343+*                                                                                           
+                                     344+*                                                                                           
+                                     345+*                                                                                           
+                                     346+*                                                                                           
+ 000140 4160 C5A1            005A1   347+         LA    6,PTARGET                                                                    
+ 000144 D205 6000 C2E8 00000 002E8   348+         MVC   0(6,6),=X'402020202120'                                                      
+                                     349+*                                                                                           
+ 00014A DE05 6000 C426 00000 00426   350+         ED    0(6,6),=P'12345'                                                             
+                                     351+*                                                                                           
+ 000150 D208 C5A7 C429 005A7 00429   352          MVC   PTARGET+6(9),=CL9'<----     '                                                
+                                     353 *                                      Delimit the target area.                             
+ 000156 E020 C584 0045 00584         354          XPRNT PLINE,69                Print result.                                        
+ 00015C 9240 C5A1      005A1         355          MVI   PTARGET,C' '            Blank out the receiving                              
+ 000160 D208 C5A2 C5A1 005A2 005A1   356          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     357 *                                                                                           
+ 000166 E020 C432 0029 00432         358          XPRNT =C'0Driver Message:  We expect "        34".',41                             
+                                     359 *                                      Print what we expect.                                
+                                     360 EDIT7    EDIT  PTARGET,=PL4'34',=X'40206B2020206B202120',10                                 
+                                     361+*                                                                                           
+                                     362+*                                                                                           
+                                     363+*                                                                                           
+                                     364+*                                                                                           
+                                     365+*                                                                                           
+ 00016C 4160 C5A1            005A1   366+         LA    6,PTARGET                                                                    
+ 000170 D209 6000 C2EE 00000 002EE   367+         MVC   0(10,6),=X'40206B2020206B202120'                                             
+                                     368+*                                                                                           
+ 000176 DE09 6000 C2BC 00000 002BC   369+         ED    0(10,6),=PL4'34'                                                             
+                                     370+*                                                                                           
+ 00017C D204 C5AB C45B 005AB 0045B   371          MVC   PTARGET+10(5),=CL5'<----'   Delimit the target area.                         
+ 000182 E020 C584 0045 00584         372          XPRNT PLINE,69                Print result.                                        
+ 000188 9240 C5A1      005A1         373          MVI   PTARGET,C' '            Blank out the receiving                              
+ 00018C D208 C5A2 C5A1 005A2 005A1   374          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     375 *                                                                                           
+ 000192 E020 C460 0029 00460         376          XPRNT =C'0Driver Message:  We expect " 1,234,567".',41                             
+                                     377 *                                      Print what we expect.                                
+                                     378 EDIT8    EDIT  PTARGET,=PL4'1234567',=X'40206B2020206B202120',10                            
+                                     379+*                                                                                           
+                                     380+*                                                                                           
+                                     381+*                                                                                           
+                                     382+*                                                                                           
+                                     383+*                                                                                           
+ 000198 4160 C5A1            005A1   384+         LA    6,PTARGET                                                                    
+ 00019C D209 6000 C2EE 00000 002EE   385+         MVC   0(10,6),=X'40206B2020206B202120'                                             
+                                     386+*                                                                                           
+ 0001A2 DE09 6000 C2C0 00000 002C0   387+         ED    0(10,6),=PL4'1234567'                                                        
+                                     388+*                                                                                           
+ 0001A8 E020 C584 0045 00584         389          XPRNT PLINE,69                Print result.                                        
+ 0001AE 9240 C5A1      005A1         390          MVI   PTARGET,C' '            Blank out the receiving                              
+ 0001B2 D208 C5A2 C5A1 005A2 005A1   391          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     392 *                                                                                           
+ 0001B8 E020 C489 0021 00489         393          XPRNT =C'0Driver Message:  We expect "00".',33                                     
+                                     394 *                                      Print what we expect.                                
+                                     395 EDIT9    EDIT  PTARGET,=PL1'0',=X'F020',2                                                   
+                                     396+*                                                                                           
+                                     397+*                                                                                           
+                                     398+*                                                                                           
+1                                                                                                               PAGE    9            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                     399+*                                                                                           
+                                     400+*                                                                                           
+ 0001BE 4160 C5A1            005A1   401+         LA    6,PTARGET                                                                    
+ 0001C2 D201 6000 C2F8 00000 002F8   402+         MVC   0(2,6),=X'F020'                                                              
+                                     403+*                                                                                           
+ 0001C8 DE01 6000 C4AA 00000 004AA   404+         ED    0(2,6),=PL1'0'                                                               
+                                     405+*                                                                                           
+ 0001CE D20C C5A3 C4AB 005A3 004AB   406          MVC   PTARGET+2(13),=CL13'<----        '                                           
+                                     407 *                                      Delimit the target are.                              
+ 0001D4 E020 C584 0045 00584         408          XPRNT PLINE,69                Print result.                                        
+ 0001DA 9240 C5A1      005A1         409          MVI   PTARGET,C' '            Blank out the receiving                              
+ 0001DE D208 C5A2 C5A1 005A2 005A1   410          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     411 *                                                                                           
+ 0001E4 E020 C4B8 0025 004B8         412          XPRNT =C'0Driver Message:  We expect "      ".',37                                 
+                                     413 *                                      Print what we expect.                                
+                                     414 EDIT10   EDIT  PTARGET,=PL3'0',=X'402020202020',6                                           
+                                     415+*                                                                                           
+                                     416+*                                                                                           
+                                     417+*                                                                                           
+                                     418+*                                                                                           
+                                     419+*                                                                                           
+ 0001EA 4160 C5A1            005A1   420+         LA    6,PTARGET                                                                    
+ 0001EE D205 6000 C2FA 00000 002FA   421+         MVC   0(6,6),=X'402020202020'                                                      
+                                     422+*                                                                                           
+ 0001F4 DE05 6000 C4DD 00000 004DD   423+         ED    0(6,6),=PL3'0'                                                               
+                                     424+*                                                                                           
+ 0001FA D208 C5A7 C429 005A7 00429   425          MVC   PTARGET+6(9),=CL9'<----     '                                                
+                                     426 *                                      Delimit the target area.                             
+ 000200 E020 C584 0045 00584         427          XPRNT PLINE,69                Print result.                                        
+ 000206 9240 C5A1      005A1         428          MVI   PTARGET,C' '            Blank out the receiving                              
+ 00020A D208 C5A2 C5A1 005A2 005A1   429          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     430 *                                                                                           
+ 000210 E020 C4E0 0027 004E0         431          XPRNT =C'0Driver Message:  We expect "  1,247-".',39                               
+                                     432 *                                      Print what we expect.                                
+                                     433 EDIT11   EDIT  PTARGET,=PL3'-1247',=X'4020206B20212060',8                                   
+                                     434+*                                                                                           
+                                     435+*                                                                                           
+                                     436+*                                                                                           
+                                     437+*                                                                                           
+                                     438+*                                                                                           
+ 000216 4160 C5A1            005A1   439+         LA    6,PTARGET                                                                    
+ 00021A D207 6000 C2A8 00000 002A8   440+         MVC   0(8,6),=X'4020206B20212060'                                                  
+                                     441+*                                                                                           
+ 000220 DE07 6000 C507 00000 00507   442+         ED    0(8,6),=PL3'-1247'                                                           
+                                     443+*                                                                                           
+ 000226 D206 C5A9 C50A 005A9 0050A   444          MVC   PTARGET+8(7),=CL7'<----  '                                                   
+                                     445 *                                      Delimit the target area.                             
+ 00022C E020 C584 0045 00584         446          XPRNT PLINE,69                Print result.                                        
+ 000232 9240 C5A1      005A1         447          MVI   PTARGET,C' '            Blank out the receiving                              
+ 000236 D208 C5A2 C5A1 005A2 005A1   448          MVC   PTARGET+1(9),PTARGET    field.                                               
+                                     449 *                                                                                           
+ 00023C E020 C511 0027 00511         450          XPRNT =C'0Driver Message:  We expect " 127.68 ".',39                               
+                                     451 *                                      Print what we expect.                                
+                                     452 EDIT12   EDIT  PTARGET,=PL3'12768',=X'402021204B202060',8                                   
+                                     453+*                                                                                           
+                                     454+*                                                                                           
+                                     455+*                                                                                           
+1                                                                                                               PAGE   10            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                     456+*                                                                                           
+                                     457+*                                                                                           
+ 000242 4160 C5A1            005A1   458+         LA    6,PTARGET                                                                    
+ 000246 D207 6000 C2B0 00000 002B0   459+         MVC   0(8,6),=X'402021204B202060'                                                  
+                                     460+*                                                                                           
+ 00024C DE07 6000 C538 00000 00538   461+         ED    0(8,6),=PL3'12768'                                                           
+                                     462+*                                                                                           
+ 000252 D206 C5A9 C50A 005A9 0050A   463          MVC   PTARGET+8(7),=CL7'<----  '                                                   
+                                     464 *                                      Delimit the target area.                             
+ 000258 E020 C584 0045 00584         465          XPRNT PLINE,69                Print result.                                        
+ 00025E 9240 C5A1      005A1         466          MVI   PTARGET,C' '            Blank out the receiving                              
+ 000262 D208 C5A2 C5A1 005A2 005A1   467          MVC   PTARGET+1(9),PTARGET    field.                                               
+1                                                                                                               PAGE   11            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                                                                                                                     
+                                                                                                                                     
+                                     469 *                                                                                           
+                                     471 *                                                                                           
+                                     472 *  Standard exit linkage with return code = 0.                                              
+                                     473 *                                                                                           
+ 000268 17FF                         474          XR    15,15                   Put 0 in register 15.                                
+ 00026A 58DD 0004            00004   475          L     13,4(13)                Point register 13 at the calling                     
+                                     476 *                                      program's save area.                                 
+ 00026E 58ED 000C            0000C   477          L     14,12(13)               Restore all registers except                         
+ 000272 980C D014            00014   478          LM    0,12,20(13)             15.                                                  
+ 000276 07FE                         479          BR    14                      Return to the calling program.                       
+1                                                                                                               PAGE   12            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                                                                                                                     
+                                                                                                                                     
+                                     481 **********************************************************************                      
+                                     482 *          The storage section for DRIVER starts here.               *                      
+                                     483 **********************************************************************                      
+                                     484 *                                                                                           
+                                     485          LTORG                                                                              
+ 000278 60C49989A5859940             486                =C'-Driver Message:  Second we test the EDIT macro.'                         
+ 0002A8 4020206B20212060             487                =X'4020206B20212060'                                                         
+ 0002B0 402021204B202060             488                =X'402021204B202060'                                                         
+ 0002B8 00000001                     489                =F'1'                                                                        
+ 0002BC 0000034C                     490                =PL4'34'                                                                     
+ 0002C0 1234567C                     491                =PL4'1234567'                                                                
+ 0002C4 F1D985A2A493A3A2             492                =C'1Results of testing macros'                                               
+ 0002DE E385A2A340938995             493                =C'Test line.'                                                               
+ 0002E8 402020202120                 494                =X'402020202120'                                                             
+ 0002EE 40206B2020206B20             495                =X'40206B2020206B202120'                                                     
+ 0002F8 F020                         496                =X'F020'                                                                     
+ 0002FA 402020202020                 497                =X'402020202020'                                                             
+ 000300 F0                           498                =C'0'                                                                        
+ 000301 60C49989A5859940             499                =C'-Driver Message:  First we test the FILL macro.'                          
+ 000330 40                           500                =C' '                                                                        
+ 000331 F0C49989A5859940             501                =C'0Driver Message:  We expect "XXXXXXXXXX".'                                
+ 00035A F0C49989A5859940             502                =C'0Driver Message:  We expect "X        X".'                                
+ 000383 F0C49989A5859940             503                =C'0Driver Message:  We expect "??????????".'                                
+ 0003AC F0C49989A5859940             504                =C'0Driver Message:  We expect "??      ??".'                                
+ 0003D5 F0C49989A5859940             505                =C'0Driver Message:  We expect " ++ ** ++ ".'                                
+ 0003FE 12345C                       506                =PL3'12345'                                                                  
+ 000401 F0C49989A5859940             507                =C'0Driver Message:  We expect " 12345".'                                    
+ 000426 12345C                       508                =P'12345'                                                                    
+ 000429 4C60606060404040             509                =CL9'<----     '                                                             
+ 000432 F0C49989A5859940             510                =C'0Driver Message:  We expect "        34".'                                
+ 00045B 4C60606060                   511                =CL5'<----'                                                                  
+ 000460 F0C49989A5859940             512                =C'0Driver Message:  We expect " 1,234,567".'                                
+ 000489 F0C49989A5859940             513                =C'0Driver Message:  We expect "00".'                                        
+ 0004AA 0C                           514                =PL1'0'                                                                      
+ 0004AB 4C60606060404040             515                =CL13'<----        '                                                         
+ 0004B8 F0C49989A5859940             516                =C'0Driver Message:  We expect "      ".'                                    
+ 0004DD 00000C                       517                =PL3'0'                                                                      
+ 0004E0 F0C49989A5859940             518                =C'0Driver Message:  We expect "  1,247-".'                                  
+ 000507 01247D                       519                =PL3'-1247'                                                                  
+ 00050A 4C606060604040               520                =CL7'<----  '                                                                
+ 000511 F0C49989A5859940             521                =C'0Driver Message:  We expect " 127.68 ".'                                  
+ 000538 12768C                       522                =PL3'12768'                                                                  
+                                     523 *                                                                                           
+ 00053C FFFFFFFFFFFFFFFF             524 DRIVSAV  DC    18F'-1'                 Save area for linkage.                               
+                                     525 *                                                                                           
+ 000584                              526 PLINE    DS    0H                      Print line.                                          
+ 000584 F0                           527          DC    C'0'                    Double spacing.                                      
+ 000585 4040404040404040             528          DC    23C' '                                                                       
+ 00059C 606060606E                   529          DC    CL5'---->'                                                                   
+ 0005A1 4040404040404040             530 PTARGET  DC    10C' '                  Actual output of interest.                           
+ 0005AB 4C60606060                   531          DC    CL5'<----'                                                                   
+ 0005B0 4040404040404040             532          DC    25C' '                                                                       
+                                     533 *                                                                                           
+                                     534 **********************************************************************                      
+                                     535 *                 The DRIVER program ends here.                      *                      
+1                                                                                                               PAGE   13            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                     536 **********************************************************************                      
+                                     537 *                                                                                           
+                                     538          END   DRIVER                  End of the overall program.                          
+0***  NO   STATEMENTS FLAGGED -  NO   WARNINGS,  NO   ERRORS                                                                         
+0*** DYNAMIC CORE AREA USED:  LOW:   22256 HIGH:    2392 LEAVING:  468920 FREE BYTES. AVERAGE:       45 BYTES/STMT ***               
+0*** ASSEMBLY TIME =    0.004 SECS,   134750 STATEMENTS/SEC ***                                                                      
+0*** PROGRAM EXECUTION BEGINNING - ANY OUTPUT BEFORE EXECUTION TIME MESSAGE IS PRODUCED BY USER PROGRAM ***                          
+1Results of testing macros                                                                                                           
+0                                                                                                                                    
+-Driver Message:  First we test the FILL macro.                                                                                      
+                                                                                                                                     
+0                       ---->Test line.<----                                                                                         
+0Driver Message:  We expect "XXXXXXXXXX".                                                                                            
+0                       ---->XXXXXXXXXX<----                                                                                         
+0Driver Message:  We expect "X        X".                                                                                            
+0                       ---->X        X<----                                                                                         
+0Driver Message:  We expect "??????????".                                                                                            
+0                       ---->??????????<----                                                                                         
+0Driver Message:  We expect "??      ??".                                                                                            
+0                       ---->??      ??<----                                                                                         
+0Driver Message:  We expect " ++ ** ++ ".                                                                                            
+0                       ----> ++ ** ++ <----                                                                                         
+0                                                                                                                                    
+-Driver Message:  Second we test the EDIT macro.                                                                                     
+                                                                                                                                     
+0Driver Message:  We expect " 12345".                                                                                                
+0                       ----> 12345<----                                                                                             
+0Driver Message:  We expect "        34".                                                                                            
+0                       ---->        34<----                                                                                         
+0Driver Message:  We expect " 1,234,567".                                                                                            
+0                       ----> 1,234,567<----                                                                                         
+0Driver Message:  We expect "00".                                                                                                    
+0                       ---->00<----                                                                                                 
+0Driver Message:  We expect "      ".                                                                                                
+0                       ---->      <----                                                                                             
+0Driver Message:  We expect "  1,247-".                                                                                              
+0                       ---->  1,247-<----                                                                                           
+0Driver Message:  We expect " 127.68 ".                                                                                              
+0                       ----> 127.68 <----                                                                                           
+1*** EXECUTION TIME =    0.000 SECS.       123 INSTRUCTIONS EXECUTED -   123000 INSTRUCTIONS/SEC ***                                 
+0*** FIRST CARD NOT READ: NO CARDS READ:FILE UNOPENED                                                                                
+0*** AM004 - NORMAL USER TERMINATION BY RETURN ***                                                                                   
+ !! END OF JES SPOOL FILE !!

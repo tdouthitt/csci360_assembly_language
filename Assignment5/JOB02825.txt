@@ -1,0 +1,439 @@
+                    J E S 2  J O B  L O G  --  S Y S T E M  S Y S 1  --  N O D E  Z O S K C T R         
+
+ 
+13.44.18 JOB02825 ---- FRIDAY,    15 JUL 2011 ----
+13.44.18 JOB02825  IRR010I  USERID KC03DDB  IS ASSIGNED TO THIS JOB.
+13.44.18 JOB02825  ICH70001I KC03DDB  LAST ACCESS AT 13:44:18 ON FRIDAY, JULY 15, 2011
+13.44.18 JOB02825  $HASP373 KC03DDBA STARTED - INIT 1    - CLASS A - SYS SYS1
+13.44.18 JOB02825  IEF403I KC03DDBA - STARTED - TIME=13.44.18
+13.44.18 JOB02825  -                                              --TIMINGS (MINS.)--            -----PAGING COUNTS----
+13.44.18 JOB02825  -STEPNAME PROCSTEP    RC   EXCP   CONN    TCB    SRB  CLOCK   SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+13.44.18 JOB02825  -STEP1                00     46     10    .00    .00     .0    102  BATCH        0     0     0     0
+13.44.18 JOB02825  IEF404I KC03DDBA - ENDED - TIME=13.44.18
+13.44.18 JOB02825  -KC03DDBA ENDED.  NAME-Taylor Douthitt      TOTAL TCB CPU TIME=    .00 TOTAL ELAPSED TIME=    .0
+13.44.18 JOB02825  $HASP395 KC03DDBA ENDED
+
+------ JES2 JOB STATISTICS ------                                                                                                   
+
+
+  15 JUL 2011 JOB EXECUTION DATE                                                                                                    
+
+
+          347 CARDS READ                                                                                                            
+
+
+          401 SYSOUT PRINT RECORDS                                                                                                  
+
+
+            0 SYSOUT PUNCH RECORDS                                                                                                  
+
+
+           30 SYSOUT SPOOL KBYTES                                                                                                   
+
+
+         0.00 MINUTES EXECUTION TIME                                                                                                
+!! END OF JES SPOOL FILE !!
+       1 //KC03DDBA JOB ,'Taylor Douthitt',MSGCLASS=H                            JOB02825
+       2 //STEP1 EXEC PGM=ASSIST                                                         
+       3 //STEPLIB DD DSN=KC02293.ASSIST.LOADLIB,DISP=SHR                                
+       4 //SYSPRINT DD SYSOUT=*                                                          
+       5 //SYSIN DD *                                                                    
+       6 //FT05F001  DD  *                                                               
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03DDB  LAST ACCESS AT 13:44:18 ON FRIDAY, JULY 15, 2011
+IEF236I ALLOC. FOR KC03DDBA STEP1
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSIN
+IEF237I JES2 ALLOCATED TO FT05F001
+IEF142I KC03DDBA STEP1 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC02293.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+IEF285I   KC03DDB.KC03DDBA.JOB02825.D0000103.?         SYSOUT        
+IEF285I   KC03DDB.KC03DDBA.JOB02825.D0000101.?         SYSIN         
+IEF285I   KC03DDB.KC03DDBA.JOB02825.D0000102.?         SYSIN         
+IEF373I STEP/STEP1   /START 2011196.1344
+IEF374I STEP/STEP1   /STOP  2011196.1344 CPU    0MIN 00.00SEC SRB    0MIN 00.00SEC VIRT   584K SYS   260K EXT       0K SYS   10972K
+IEF375I  JOB/KC03DDBA/START 2011196.1344
+IEF376I  JOB/KC03DDBA/STOP  2011196.1344 CPU    0MIN 00.00SEC SRB    0MIN 00.00SEC
+!! END OF JES SPOOL FILE !!
+
+*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+
+                                                                                                                                    
+
+                                                                                                               PAGE    1            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                      1 ************************************************************                                
+                                      2 *  Program:     Assign5.JCL                                *                                
+                                      3 *  Programmer:  TAYLOR DOUTHITT                            *                                
+                                      4 *  NAME: MAIN                                              *                                
+                                      5 *  FUNCTION:                                               *                                
+                                      6 *  INPUT: file - given sample input file                   *                                
+                                      7 *  OUTPUT: number list                                     *                                
+                                      8 *  ENTRY CONDS: NONE                                       *                                
+                                      9 *  REGISTER USAGE:   R1 - Parameter List Usage/xDECI use   *                                
+                                     10 *                    R2 - SUBROUTINE USE                   *                                
+                                     11 *                    R3 - SUBROUTINE USE                   *                                
+                                     12 *                    R4 - TABLE                            *                                
+                                     13 *                    R5 - INPUTLINE                        *                                
+                                     14 *                    R6 - ADDRESS FOR XDECO                *                                
+                                     15 *                    R7 -                                  *                                
+                                     16 *                    R8 - DIVISION USE                     *                                
+                                     17 *                    R9 - DIVISION USE                     *                                
+                                     18 *                    R10 - PRINT COUNTER                   *                                
+                                     19 *                    R11 - Subroutine return address       *                                
+                                     20 *                    R12 - BASE REGISTER                   *                                
+                                     21 *                    R13 - A(LOCAL SAVE AREA)              *                                
+                                     22 *                    R14 - Return address                  *                                
+                                     23 *                    R15 - V(SUBROUTINE)                   *                                
+                                     24 *  EXIT CONDS:  NONE                                       *                                
+                                     25 *  PSEUDOCODE:                                             *                                
+                                     26 *  NOTES:                                                  *                                
+                                     27 ************************************************************                                
+000000                               28 R0 EQU 0                                                                                    
+000001                               29 R1 EQU 1                                                                                    
+000002                               30 R2 EQU 2                                                                                    
+000003                               31 R3 EQU 3                                                                                    
+000004                               32 R4 EQU 4                                                                                    
+000005                               33 R5 EQU 5                                                                                    
+000006                               34 R6 EQU 6                                                                                    
+000007                               35 R7 EQU 7                                                                                    
+000008                               36 R8 EQU 8                                                                                    
+000009                               37 R9 EQU 9                                                                                    
+00000A                               38 R10 EQU 10                                                                                  
+00000B                               39 R11 EQU 11                                                                                  
+00000C                               40 R12 EQU 12                                                                                  
+00000D                               41 R13 EQU 13                                                                                  
+00000E                               42 R14 EQU 14                                                                                  
+00000F                               43 R15 EQU 15                                                                                  
+000000                               44 ASSIGN5 CSECT                                                                               
+000000                               45     USING ASSIGN5,R15                                                                       
+                                     46 *  CREATE A RESTORE POINT                                                                   
+000000 900F F01C            0001C    47     STM R0,R15,MAINSAVE                                                                     
+                                     48 *                                                                                           
+                                     49 *   CALL TO SUBROUTINE BUILD                                                                
+                                     50 *                                                                                           
+000004 4110 F1B0            001B0    51     LA R1,BLIST         reg 1 = address of BLIST                                            
+000008 0000 0000            00000    52     L R15,=V(BUILD)      point r15 at build                                                 
+
+                                                                                                               PAGE    2            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+----->AS100 ADDRESSIBILITY ERROR        ------------------$----------------------------------------------------- <-ERROR            
+00000C 05EF                          53     BALR R14,R15          branch to build                                                   
+                                     54 *                                                                                           
+                                     55 *   CALL TO SUBROUTINE PRINT                                                                
+                                     56 *                                                                                           
+00000E 4110 F1B8            001B8    57     LA R1,PLIST         reg 1 = address of BLIST                                            
+000012 0000 0000            00000    58     L R15,=V(PRINT)      point r15 at build                                                 
+----->AS100 ADDRESSIBILITY ERROR        ------------------$----------------------------------------------------- <-ERROR            
+000016 05EF                          59     BALR R14,R15          branch to build                                                   
+                                     60 *                                                                                           
+                                     61 *   CALL TO SUBROUTINE SEARCH                                                               
+                                     62 *                                                                                           
+                                     63 *    LA R1,=SLIST         reg 1 = address of BLIST                                          
+                                     64 *    L R15,=V(SEARCH)      point r15 at build                                               
+                                     65 *    BALR R14,R15          branch to build                                                  
+                                     66 *                                                                                           
+                                     67 *   CALL TO SUBROUTINE PRINTE                                                               
+                                     68 *                                                                                           
+                                     69 *    LA R1,=PELIST         reg 1 = address of BLIST                                         
+                                     70 *    L R15,=V(PRINTE)      point r15 at build                                               
+                                     71 *    BALR R14,R15          branch to build                                                  
+                                     72 * END OF PROGRAM                                                                            
+000018 07FE                          73     BR R14                                                                                  
+                                     74 ***************************************************                                         
+                                     75 *       STORAGE FOR MAIN STARTS HERE              *                                         
+                                     76 ***************************************************                                         
+00001C                               77 MAINSAVE DS 18F                                                                             
+                                     78 * TABLE STORAGE *                                                                           
+000064                               79 TABLE DS 60F                                                                                
+000154 5C                            80 ENDTABLE DC C'*'                                                                            
+000158 00000154                      81 EOT DC A(ENDTABLE)                                                                          
+                                     82 * INPUTLINE STORAGE *                                                                       
+00015C                               83 INPUT DS 80C                                                                                
+0001AC 5B                            84 END DC C'$'                                                                                 
+                                     85 * PARAMETER LISTS *                                                                         
+0001B0 00000064                      86 BLIST DC A(TABLE)                                                                           
+0001B4 00000154                      87       DC A(ENDTABLE)                                                                        
+                                     88 *                                                                                           
+0001B8 00000064                      89 PLIST DC A(TABLE)                                                                           
+0001BC 00000154                      90       DC A(ENDTABLE)                                                                        
+                                     91 *                                                                                           
+0001C0 00000064                      92 SLIST DC A(TABLE)                                                                           
+0001C4 00000154                      93       DC A(ENDTABLE)                                                                        
+0001C8 0000052A                      94       DC A(SNUM)                                                                            
+                                     95 *                                                                                           
+0001CC 00000064                      96 PELIST DC A(TABLE)                                                                          
+0001D0 00000154                      97       DC A(ENDTABLE)                                                                        
+                                     98 ***************************************************                                         
+                                     99 *               SUBROUTINE BUILD                  *                                         
+                                    100 ***************************************************                                         
+0001D8                              101 BUILD CSECT                                                                                 
+                                    102 * STANDARD ENTRY LINKAGE *                                                                  
+0001D8 90EC D00C            0000C   103     STM R14,R12,12(13)    save the registers                                                
+0001DC 18CF                         104     LR R12,R15            make 12 the base register                                         
+0001D8                              105     USING BUILD,R12                                                                         
+0001DE 41E0 C07C            00254   106     LA R14,BSAVE         point r14 at BSAVE                                                 
+0001E2 50D0 E004            00004   107     ST R13,4(0,14)       save forward pointer in reg 13                                     
+
+                                                                                                               PAGE    3            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+0001E6 50E0 D008            00008   108     ST R14,8(0,13)       save backward pointer in reg 14                                    
+0001EA 18DE                         109     LR R13,R14           point r13 at BSAVE                                                 
+                                    110 *                                                                                           
+0001EC 9823 1000            00000   111     LM R2,R3,0(1)        unload parameters                                                  
+0001F0 5842 0000            00000   112     L R4,0(R2)            reg 4 = table                                                     
+                                    113 *                                                                                           
+0001F4 E000 F15C 0050 0015C         114     XREAD INPUT,80 READ FIRST RECORD IN FILE                                                
+                                    115 *                                                                                           
+                                    116 *              OUTER LOOP TO PROCESS RECORDS *                                              
+0001FA 4740 C060            00238   117 OLOOP BC B'0100',ENDO  if eof then skip to end outer loop                                   
+                                    118 *                                                                                           
+0001FE 5940 F158            00158   119     C R4,EOT            compare table and endtable                                          
+000202 47A0 C060            00238   120     BC B'1010',ENDO     if table full then skip to end outer loop                           
+000206 4110 F15C            0015C   121     LA R1,INPUT         load input into r1                                                  
+                                    122 *                                                                                           
+                                    123 *               INNER LOOP TO EXTRACT VALUES *                                              
+00020A 5350 1000            00000   124 ILOOP XDECI R5,0(,R1)   store converted form of input in r5                                 
+00020E 4710 C04E            00226   125       BC B'0001',INVLD  if input invalid skip past storage phase                            
+000212 5950 C078            00250   126       C R5,=F'999999'   compare table value to 999999                                       
+000216 4780 C060            00238   127       BE ENDO           if equal exit table build                                           
+                                    128 *                                                                                           
+00021A 5050 4000            00000   129       ST R5,0(0,R4)     STORE NUMBER IN TABLE                                               
+00021E 4140 4004            00004   130       LA R4,4(0,R4)     ADVANCE TABLE                                                       
+000222 47F0 C032            0020A   131       B ILOOP           UC BRANCH TO TOP OF INNER LOOP                                      
+                                    132 *                                                                                           
+000226 955B 1000      00000         133 INVLD  CLI 0(R1),C'$'   scan for end of inputfile                                           
+00022A 4780 C056            0022E   134       BE ENDI           if end of input branch to end of inner loop                         
+                                    135 *                                                                                           
+00022E                              136 ENDI DS 0H              END OF INNER LOOP                                                   
+00022E E000 F15C 0050 0015C         137       XREAD INPUT,80    READ NEXT RECORD                                                    
+000234 47F0 C022            001FA   138       B OLOOP           UC BRANCH TO TOP OF OUTER LOOP                                      
+                                    139 *                                                                                           
+000238                              140 ENDO DS 0H              END OF OUTER LOOP                                                   
+                                    141 *                                                                                           
+000238 5040 F158            00158   142       ST R4,EOT         store last table entry as in EOT                                    
+                                    143 * STANDARD EXIT LINKAGE *                                                                   
+00023C 58D0 D004            00004   144     L R13,4(0,13)        point r13 at caller save area                                      
+000240 98EC D00C            0000C   145     LM R14,R12,12(13)    restore registers                                                  
+000244 07FE                         146     BR R14               return to caller                                                   
+                                    147     LTORG                                                                                   
+000248 000001D8                     148                =V(BUILD)                                                                    
+00024C 000002A0                     149                =V(PRINT)                                                                    
+000250 000F423F                     150                =F'999999'                                                                   
+                                    151 ***************************************************                                         
+                                    152 *      STORAGE FOR BUILD STARTS HERE              *                                         
+                                    153 ***************************************************                                         
+000254                              154 BSAVE DS 18F                                                                                
+                                    155 ***************************************************                                         
+                                    156 *               SUBROUTINE PRINT                  *                                         
+                                    157 ***************************************************                                         
+0002A0                              158 PRINT CSECT                                                                                 
+                                    159 * STANDARD ENTRY LINKAGE *                                                                  
+0002A0 90EC D00C            0000C   160     STM R14,R12,12(13)   save the registers                                                 
+0002A4 18CF                         161     LR R12,R15           make 12 the base register                                          
+0002A0                              162     USING PRINT,R12                                                                         
+0002A6 41E0 C08C            0032C   163     LA R14,PSAVE         point r14 at PSAVE                                                 
+0002AA 50D0 E004            00004   164     ST R13,4(0,14)      save forward pointer in reg 13                                      
+
+                                                                                                               PAGE    4            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+0002AE 50E0 D008            00008   165     ST R14,8(0,13)       save backward pointer in reg 14                                    
+0002B2 18DE                         166     LR R13,R14           point r13 at PSAVE                                                 
+                                    167 *                                                                                           
+0002B4 9823 1000            00000   168     LM R2,R3,0(1)        unload parameters                                                  
+0002B8 5842 0000            00000   169     L R4,0(2)            reg 4 = table                                                      
+                                    170 *                                                                                           
+                                    171 * PRINT HEADER                                                                              
+0002BC E020 C0D4 002F 00374         172       XPRNT HEADR,47                                                                        
+0002C2 5940 F158            00158   173 PLOOP C R4,EOT           compare table to endtable                                          
+0002C6 47B0 C070            00310   174       BNL ENDPL          if table empty or finished skip to end of loop                     
+0002CA 1BAA                         175       SR R10,R10         ZERO OUT COUNTER                                                   
+0002CC 58A0 C080            00320   176       L R10,=F'5'        load value into counter                                            
+                                    177 *                                                                                           
+0002D0 4160 C104            003A4   178       LA R6,NUM          load address of num into reg 6                                     
+0002D4 59A0 C084            00324   179 PRNT1 C R10,=F'0'        compare counter and zero                                           
+0002D8 4780 C05C            002FC   180       BE PRNTN           if equal branch to prntline                                        
+0002DC 5854 0000            00000   181       L R5,0(R4)         load table entry into reg 5                                        
+0002E0 5256 0000            00000   182       XDECO R5,0(6)      put printable form in REG 6                                        
+0002E4 4144 0004            00004   183       LA R4,4(R4)        advance the table                                                  
+0002E8 5940 F158            00158   184       C R4,EOT           compare table entry to endtable                                    
+0002EC 47B0 C05C            002FC   185       BNL PRNTN          if not eot branch to printline                                     
+0002F0 4166 0014            00014   186       LA R6,20(R6)       advance to next num in storage                                     
+0002F4 5BA0 C088            00328   187       S R10,=F'1'        subtract one from counter                                          
+0002F8 47F0 C034            002D4   188       B PRNT1            UC BRANCH TO TOP OF LOOP                                           
+                                    189 *                                                                                           
+0002FC E020 C103 0051 003A3         190 PRNTN XPRNT LINE,81                                                                         
+                                    191 *                                                                                           
+                                    192 *        SECTION TO BLANK OUT PRINT LINES                                                   
+                                    193 *                                                                                           
+000302 9240 C103      003A3         194       MVI LINE,C' '      move blank to end of printline                                     
+000306 D24F C104 C103 003A4 003A3   195       MVC LINE+1(80),LINE blank out rest after line                                         
+00030C 47F0 C022            002C2   196       B PLOOP            UC branch to top of print loop                                     
+000310                              197 ENDPL DS 0H             END OF LOOP                                                         
+                                    198 *                                                                                           
+                                    199 * STANDARD EXIT LINKAGE *                                                                   
+000310 58D0 D004            00004   200     L R13,4(0,13)        point r13 at caller save area                                      
+000314 98EC D00C            0000C   201     LM R14,R12,12(13)    restore registers                                                  
+000318 07FE                         202     BR R14               return to caller                                                   
+                                    203     LTORG                                                                                   
+000320 00000005                     204                =F'5'                                                                        
+000324 00000000                     205                =F'0'                                                                        
+000328 00000001                     206                =F'1'                                                                        
+                                    207 ***************************************************                                         
+                                    208 *      STORAGE FOR PRINT STARTS HERE              *                                         
+                                    209 ***************************************************                                         
+00032C                              210 PSAVE DS 18F                                                                                
+                                    211 * PRINT LINE FOR HEADER                                                                     
+000374 F1                           212 HEADR DC C'1'                                                                               
+000375 4040404040404040             213       DC CL30' '                                                                            
+000393 40E3C1C2D3C540C3             214       DC C' TABLE CONTENTS '                                                                
+                                    215 * PRINT LINE FOR LIST OF NUMBERS                                                            
+0003A3 F0                           216 LINE DC C'0'                                                                                
+0003A4                              217 NUM  DS CL12                                                                                
+0003B0 4040404040404040             218      DC CL8' '                                                                              
+0003B8                              219 NUM1 DS CL12                                                                                
+0003C4 4040404040404040             220      DC CL8' '                                                                              
+0003CC                              221 NUM2 DS CL12                                                                                
+
+                                                                                                               PAGE    5            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+0003D8 4040404040404040             222      DC CL8' '                                                                              
+0003E0                              223 NUM3 DS CL12                                                                                
+0003EC 4040404040404040             224      DC CL8' '                                                                              
+                                    225 ***************************************************                                         
+                                    226 *               SUBROUTINE SEARCH                 *                                         
+                                    227 ***************************************************                                         
+0003F8                              228 SEARCH CSECT                                                                                
+                                    229 * STANDARD ENTRY LINKAGE *                                                                  
+0003F8 90EC D00C            0000C   230     STM R14,R12,12(13)    save the registers                                                
+0003FC 18CF                         231     LR R12,R15            make 12 the base register                                         
+0003F8                              232     USING SEARCH,R12                                                                        
+0003FE 41E0 C028            00420   233     LA R14,SSAVE         point r14 at SSAVE                                                 
+000402 50D0 E004            00004   234     ST R13,4(0,14)       save forward pointer in reg 13                                     
+000406 50E0 D008            00008   235     ST R14,8(0,13)       save backward pointer in reg 14                                    
+00040A 18DE                         236     LR R13,R14           point r13 at SSAVE                                                 
+                                    237 *                                                                                           
+00040C 9823 1000            00000   238     LM R2,R3,0(1)        unload parameters                                                  
+000410 5842 0000            00000   239     L R4,0(R2)            reg 4 = table                                                     
+                                    240 * START OF CODE FOR SEARCH                                                                  
+                                    241 * STANDARD EXIT LINKAGE *                                                                   
+000414 58D0 D004            00004   242     L R13,4(0,13)        point r13 at caller save area                                      
+000418 98EC D00C            0000C   243     LM R14,R12,12(13)    restore registers                                                  
+00041C 07FE                         244     BR R14               return to caller                                                   
+                                    245     LTORG                                                                                   
+                                    246 ***************************************************                                         
+                                    247 *      STORAGE FOR SEARCH STARTS HERE             *                                         
+                                    248 ***************************************************                                         
+000420                              249 SSAVE DS 18F                                                                                
+000468 F1                           250 SHEAD DC C'1'                                                                               
+000469 4040404040404040             251       DC CL30' '                                                                            
+000487 D9C5E2E4D3E3E240             252       DC C'RESULTS OF SEARCHES'                                                             
+00049A F0                           253 FLINE DC C'0'                                                                               
+00049B 4040404040404040             254       DC CL30' '                                                                            
+0004B9 E6C540C8C1E5C540             255       DC C'WE HAVE FOUND THE VALUE:'                                                        
+0004D1 4040404040404040             256       DC CL15' '                                                                            
+0004E0 F0                           257 NFLINE DC C'0'                                                                              
+0004E1 4040404040404040             258        DC CL30' '                                                                           
+0004FF E6C540C8C1E5C540             259        DC C'WE HAVE NOT FOUND THE VALUE:'                                                   
+00051B 4040404040404040             260        DC CL15' '                                                                           
+00052A                              261 SNUM   DS CL12                                                                              
+000536                              262 SINPUT DS CL80                                                                              
+000586 5B                           263 ENDS   DC C'$'                                                                              
+                                    264 ***************************************************                                         
+                                    265 *               SUBROUTINE PRINTE                 *                                         
+                                    266 ***************************************************                                         
+000588                              267 PRINTE CSECT                                                                                
+                                    268 * STANDARD ENTRY LINKAGE *                                                                  
+000588 90EC D00C            0000C   269     STM R14,R12,12(13)    save the registers                                                
+00058C 18CF                         270     LR R12,R15            make 12 the base register                                         
+000588                              271     USING PRINTE,R12                                                                        
+00058E 41E0 C094            0061C   272     LA R14,PESAVE         point r14 at PESAVE                                               
+000592 50D0 E004            00004   273     ST R13,4(0,14)       save forward pointer in reg 13                                     
+000596 50E0 D008            00008   274     ST R14,8(0,13)       save backward pointer in reg 14                                    
+00059A 18DE                         275     LR R13,R14           point r13 at PESAVE                                                
+                                    276 *   CODE FOR PRINTE STARTS HERE                                                             
+00059C 9823 1000            00000   277     LM R2,R3,0(1)        unload parameters                                                  
+0005A0 5842 0000            00000   278     L R4,0(2)            reg 4 = table                                                      
+
+                                                                                                               PAGE    6            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                    279 *                                                                                           
+                                    280 * PRINT HEADER                                                                              
+0005A4 E020 C0DC 002F 00664         281       XPRNT HEADE,47                                                                        
+0005AA 5940 F158            00158   282 PELOOP C R4,EOT           compare table to endtable                                         
+0005AE 47B0 C070            005F8   283       BNL ENDPE          if table empty or finished skip to end of loop                     
+0005B2 1BAA                         284       SR R10,R10         ZERO OUT COUNTER                                                   
+0005B4 58A0 C088            00610   285       L R10,=F'6'        load value into counter                                            
+                                    286 *                                                                                           
+0005B8 4160 C110            00698   287       LA R6,PNUM          load address of num into reg 6                                    
+0005BC 59A0 C08C            00614   288 PRNT2 C R10,=F'0'        compare counter and zero                                           
+0005C0 4780 C05C            005E4   289       BE PRNTX           if equal branch to prntline                                        
+0005C4 5854 0000            00000   290       L R5,0(R4)         load table entry into reg 5                                        
+0005C8 5256 0000            00000   291       XDECO R5,0(6)      put printable form in REG 6                                        
+0005CC 4144 0004            00004   292       LA R4,4(R4)        advance the table                                                  
+0005D0 5940 F158            00158   293       C R4,EOT           compare table entry to endtable                                    
+0005D4 47B0 C05C            005E4   294       BNL PRNTX          if not eot branch to printline                                     
+0005D8 4166 0014            00014   295       LA R6,20(R6)       advance to next num in storage                                     
+0005DC 5BA0 C090            00618   296       S R10,=F'1'        subtract one from counter                                          
+0005E0 47F0 C034            005BC   297       B PRNT2            UC BRANCH TO TOP OF LOOP                                           
+                                    298 *                                                                                           
+0005E4 0000 0000 0000 00000         299 PRNTX XPRNT LINE,81                                                                         
+----->AS100 ADDRESSIBILITY ERROR        ---------------$-------------------------------------------------------- <-ERROR            
+                                    300 *                                                                                           
+                                    301 *        SECTION TO BLANK OUT PRINT LINES                                                   
+                                    302 *                                                                                           
+0005EA 9240 C10F      00697         303       MVI LINEP,C' '      move blank to end of printline                                    
+0005EE D24F C110 C10F 00698 00697   304       MVC LINEP+1(80),LINEP blank out rest after line                                       
+0005F4 47F0 C022            005AA   305       B PELOOP            UC branch to top of print loop                                    
+0005F8                              306 ENDPE DS 0H             END OF LOOP                                                         
+                                    307 *CODE FOR PRINTE ENDS HERE                                                                  
+0005F8 9823 1000            00000   308     LM R2,R3,0(1)        unload parameters                                                  
+0005FC 5842 0000            00000   309     L R4,0(R2)            reg 4 = table                                                     
+                                    310 * START OF CODE FOR SEARCH                                                                  
+                                    311 * STANDARD EXIT LINKAGE *                                                                   
+000600 58D0 D004            00004   312     L R13,4(0,13)        point r13 at caller save area                                      
+000604 98EC D00C            0000C   313     LM R14,R12,12(13)    restore registers                                                  
+000608 07FE                         314     BR R14               return to caller                                                   
+                                    315     LTORG                                                                                   
+000610 00000006                     316                =F'6'                                                                        
+000614 00000000                     317                =F'0'                                                                        
+000618 00000001                     318                =F'1'                                                                        
+                                    319 ***************************************************                                         
+                                    320 *      STORAGE FOR PRINTE STARTS HERE             *                                         
+                                    321 ***************************************************                                         
+00061C                              322 PESAVE DS 18F                                                                               
+                                    323 * PRINT LINE FOR HEADER                                                                     
+000664 F1                           324 HEADE DC C'1'                                                                               
+000665 4040404040404040             325       DC CL30' '                                                                            
+000683 D3C9E2E340D6C640             326       DC C'LIST OF EVEN NUMBERS'                                                            
+                                    327 * PRINT LINE FOR LIST OF EVEN NUMBERS                                                       
+000697 F0                           328 LINEP DC C'0'                                                                               
+000698                              329 PNUM  DS CL12                                                                               
+0006A4 4040404040404040             330      DC CL8' '                                                                              
+0006AC                              331 PNUM1 DS CL12                                                                               
+0006B8 4040404040404040             332      DC CL8' '                                                                              
+0006C0                              333 PNUM2 DS CL12                                                                               
+0006CC 4040404040404040             334      DC CL8' '                                                                              
+
+                                                                                                               PAGE    7            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+0006D4                              335 PNUM3 DS CL12                                                                               
+0006E0 4040404040404040             336      DC CL8' '                                                                              
+                                    337         END ASSIGN5                                                                         
+
+***     3 STATEMENTS FLAGGED -  NO   WARNINGS,     3 ERRORS                                                                         
+
+***** NUMBER OF ERRORS EXCEEDS LIMIT OF  NO   ERRORS - PROGRAM EXECUTION DELETED *****                                              
+
+*** DYNAMIC CORE AREA USED:  LOW:   14024 HIGH:    1800 LEAVING:  477744 FREE BYTES. AVERAGE:       46 BYTES/STMT ***               
+
+*** ASSEMBLY TIME =    0.001 SECS,   338000 STATEMENTS/SEC ***                                                                      
+!! END OF JES SPOOL FILE !!

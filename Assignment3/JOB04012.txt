@@ -1,0 +1,374 @@
+                    J E S 2  J O B  L O G  --  S Y S T E M  S Y S 1  --  N O D E  Z O S K C T R         
+
+ 
+00.52.02 JOB04012 ---- THURSDAY,  30 JUN 2011 ----
+00.52.02 JOB04012  IRR010I  USERID KC03DDB  IS ASSIGNED TO THIS JOB.
+00.52.02 JOB04012  ICH70001I KC03DDB  LAST ACCESS AT 00:52:01 ON THURSDAY, JUNE 30, 2011
+00.52.02 JOB04012  $HASP373 KC03DDBT STARTED - INIT 1    - CLASS A - SYS SYS1
+00.52.02 JOB04012  IEF403I KC03DDBT - STARTED - TIME=00.52.02
+00.52.02 JOB04012  -                                              --TIMINGS (MINS.)--            -----PAGING COUNTS----
+00.52.02 JOB04012  -STEPNAME PROCSTEP    RC   EXCP   CONN    TCB    SRB  CLOCK   SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+00.52.02 JOB04012  -STEP1                00     62     11    .00    .00     .0    164  BATCH        0     0     0     0
+00.52.02 JOB04012  IEF404I KC03DDBT - ENDED - TIME=00.52.02
+00.52.02 JOB04012  -KC03DDBT ENDED.  NAME-Taylor Douthitt      TOTAL TCB CPU TIME=    .00 TOTAL ELAPSED TIME=    .0
+00.52.02 JOB04012  $HASP395 KC03DDBT ENDED
+
+------ JES2 JOB STATISTICS ------                                                                                                   
+
+
+  30 JUN 2011 JOB EXECUTION DATE                                                                                                    
+
+
+          220 CARDS READ                                                                                                            
+
+
+          320 SYSOUT PRINT RECORDS                                                                                                  
+
+
+            0 SYSOUT PUNCH RECORDS                                                                                                  
+
+
+           19 SYSOUT SPOOL KBYTES                                                                                                   
+
+
+         0.00 MINUTES EXECUTION TIME                                                                                                
+!! END OF JES SPOOL FILE !!
+       1 //KC03DDBT JOB ,'Taylor Douthitt',MSGCLASS=H                            JOB04012
+       2 //STEP1 EXEC PGM=ASSIST                                                         
+       3 //STEPLIB DD DSN=KC02293.ASSIST.LOADLIB,DISP=SHR                                
+       4 //SYSPRINT DD SYSOUT=*                                                          
+       5 //SYSIN DD *                                                                    
+       6 //FT05F001 DD DSN=KC02314.SUMMER11.CSCI360.HW3DATA,DISP=SHR                     
+       7 //                                                                              
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03DDB  LAST ACCESS AT 00:52:01 ON THURSDAY, JUNE 30, 2011
+IEF236I ALLOC. FOR KC03DDBT STEP1
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSIN
+IGD103I SMS ALLOCATED TO DDNAME FT05F001
+IEF142I KC03DDBT STEP1 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC02293.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+IEF285I   KC03DDB.KC03DDBT.JOB04012.D0000102.?         SYSOUT        
+IEF285I   KC03DDB.KC03DDBT.JOB04012.D0000101.?         SYSIN         
+IGD104I KC02314.SUMMER11.CSCI360.HW3DATA             RETAINED,  DDNAME=FT05F001
+IEF373I STEP/STEP1   /START 2011181.0052
+IEF374I STEP/STEP1   /STOP  2011181.0052 CPU    0MIN 00.01SEC SRB    0MIN 00.00SEC VIRT   584K SYS   280K EXT       4K SYS   10984K
+IEF375I  JOB/KC03DDBT/START 2011181.0052
+IEF376I  JOB/KC03DDBT/STOP  2011181.0052 CPU    0MIN 00.01SEC SRB    0MIN 00.00SEC
+!! END OF JES SPOOL FILE !!
+
+*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+
+                                                                                                                                    
+
+       CSCI 360 ASSIGNMENT 3                                                                                   PAGE    1            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                      2 ************************************************************                                
+                                      3 *  Program:     Assign3.JCL                                *                                
+                                      4 *  Programmer:  Taylor Douthitt                            *                                
+                                      5 *  NAME: MAIN                                              *                                
+                                      6 *  FUNCTION:                                               *                                
+                                      7 *  INPUT: file - given sample input file                   *                                
+                                      8 *  OUTPUT: payroll report                                  *                                
+                                      9 *  ENTRY CONDS: NONE                                       *                                
+                                     10 *  REGISTER USAGE:   R0 - Command Use                      *                                
+                                     11 *                    R1 - Command Use                      *                                
+                                     12 *                    R2 - Math use                         *                                
+                                     13 *                    R3 - Math use                         *                                
+                                     14 *                    R4 - ID number                        *                                
+                                     15 *                    R5 - Hourly Wage                      *                                
+                                     16 *                    R6 - Number of hours                  *                                
+                                     17 *                    R7 - Bonus                            *                                
+                                     18 *                    R8 - Deduction                        *                                
+                                     19 *                    R9 - Gross Pay                        *                                
+                                     20 *                    R10 - Net Pay                         *                                
+                                     21 *                    R11 - Average Net Pay                 *                                
+                                     22 *                    R12 - employee count                  *                                
+                                     23 *                    R13 - overtime count                  *                                
+                                     24 *                    14 - exit address                     *                                
+                                     25 *                    15 - base register                    *                                
+                                     26 *  EXIT CONDS:  NONE                                       *                                
+                                     27 *  PSEUDOCODE:                                             *                                
+                                     28 *  NOTES:                                                  *                                
+                                     29 ************************************************************                                
+000000                               30 R0 EQU 0                                                                                    
+000001                               31 R1 EQU 1                                                                                    
+000002                               32 R2 EQU 2                                                                                    
+000003                               33 R3 EQU 3                                                                                    
+000004                               34 R4 EQU 4                                                                                    
+000005                               35 R5 EQU 5                                                                                    
+000006                               36 R6 EQU 6                                                                                    
+000007                               37 R7 EQU 7                                                                                    
+000008                               38 R8 EQU 8                                                                                    
+000009                               39 R9 EQU 9                                                                                    
+00000A                               40 R10 EQU 10                                                                                  
+00000B                               41 R11 EQU 11                                                                                  
+00000C                               42 R12 EQU 12                                                                                  
+00000D                               43 R13 EQU 13                                                                                  
+000000                               44 ASSIGN3 CSECT                                                                               
+000000                               45     USING ASSIGN3,15                                                                        
+000000 E020 F140 0033 00140          46     XPRNT HEADR,51 print page header                                                        
+000006 1BBB                          47     SR R11,R11 Initialize variables                                                         
+000008 1BAA                          48     SR R10,R10                                                                              
+00000A 1B99                          49     SR R9,R9                                                                                
+00000C 1BCC                          50     SR R12,R12 Reset count set                                                              
+00000E 1BDD                          51     SR R13,R13                                                                              
+000010 E020 F173 0056 00173          52     XPRNT HEAD1,86                                                                          
+000016 E020 F1C8 0056 001C8          53     XPRNT HEAD2,86                                                                          
+
+       CSCI 360 ASSIGNMENT 3                                                                                   PAGE    2            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+00001C E020 F21D 0056 0021D          54     XPRNT HEAD3,86                                                                          
+                                                                                                                                    
+                                                                                                                                    
+                                     56 *                                                                                           
+000022 E000 F0D8 0050 000D8          57     XREAD FILE,80 Read first input record                                                   
+                                                                                                                                    
+                                                                                                                                    
+                                     59 *                                                                                           
+000028 4740 F0A4            000A4    60 TOP BC B'0100',END Top of loop and condition                                                
+                                                                                                                                    
+                                                                                                                                    
+                                     62 *                                                                                           
+00002C 5340 F0D8            000D8    63     XDECI R4,FILE Process record with XDECI                                                 
+000030 5351 0000            00000    64     XDECI R5,0(1)                                                                           
+000034 5361 0000            00000    65     XDECI R6,0(1)                                                                           
+000038 5371 0000            00000    66     XDECI R7,0(1)                                                                           
+00003C 5381 0000            00000    67     XDECI R8,0(1)                                                                           
+                                     68 *                                                                                           
+                                                                                                                                    
+                                                                                                                                    
+000040 1835                          70     LR R3,R5 Load wage into register 3                                                      
+000042 1C26                          71     MR R2,R6  calculate gross pay(wage * hours)                                             
+000044 1893                          72     LR R9,R3  copy gross pay into register 9                                                
+000046 1B33                          73     SR R3,R3  clear register 3                                                              
+000048 1B22                          74     SR R2,R2  clear register 2                                                              
+00004A 1B11                          75     SR R1,R1  clear register 1                                                              
+                                     76 *                                                                                           
+                                                                                                                                    
+                                                                                                                                    
+00004C 5960 F348            00348    78     C R6,=F'40' compare hours worked to literal 40                                          
+000050 47C0 F06C            0006C    79     BC B'1100',SKIP if less than 40 hours worked                                            
+000054 4720 F058            00058    80     BC B'0010',OVRT if more than 40 hours worked                                            
+                                     81 *                                                                                           
+                                     82 *             Determine overtime pay                                                        
+                                                                                                                                    
+                                                                                                                                    
+000058 5830 F34C            0034C    84 OVRT L R3,=F'2' load literal 2 into register 3                                              
+00005C 1C25                          85     MR R2,R5 calculate OT wage multiply 2 * wage                                            
+                                     86 *     value gets stored in register 3                                                       
+00005E 1816                          87     LR R1,R6 load hours into register 2                                                     
+000060 5B10 F348            00348    88     S R1,=F'40' calculate OT hours(hours-40)                                                
+                                     89 *                                                                                           
+000064 1C03                          90     MR R0,R3 multiply OT hours by wage                                                      
+                                     91 *                                                                                           
+000066 5AD0 F350            00350    92     A R13,=F'1' increment OT count                                                          
+00006A 1A91                          93     AR R9,R1 add OT pay to gross pay                                                        
+                                                                                                                                    
+                                                                                                                                    
+                                     95 *      Determine net pay preliminary                                                        
+00006C 18A9                          96 SKIP LR R10,R9                                                                              
+                                     97 *                                                                                           
+                                                                                                                                    
+                                                                                                                                    
+00006E 1AA7                          99     AR R10,R7 Add bonus to net pay                                                          
+000070 1BA8                         100     SR R10,R8 Subtract deduction from net pay                                               
+                                    101 *                                                                                           
+
+       CSCI 360 ASSIGNMENT 3                                                                                   PAGE    3            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+000072 1ABA                         103     AR R11,R10 add net pay to register 11                                                   
+                                    104 *     Convert register values into variables in print form                                  
+                                                                                                                                    
+                                                                                                                                    
+000074 5240 F26E            0026E   106     XDECO R4,IDNUM                                                                          
+000078 5250 F27A            0027A   107     XDECO R5,WAGE                                                                           
+00007C 5260 F286            00286   108     XDECO R6,HOURS                                                                          
+000080 5270 F292            00292   109     XDECO R7,BONUS                                                                          
+000084 5280 F29E            0029E   110     XDECO R8,DDUCT                                                                          
+000088 5290 F2AA            002AA   111     XDECO R9,GPAY                                                                           
+00008C 52A0 F2B6            002B6   112     XDECO R10,NPAY                                                                          
+                                                                                                                                    
+                                                                                                                                    
+                                    114 *   Print variable values                                                                   
+000090 E020 F26D 005A 0026D         115     XPRNT PRNTL,90                                                                          
+                                                                                                                                    
+                                                                                                                                    
+000096 5AC0 F350            00350   117     A R12,=F'1'                                                                             
+                                                                                                                                    
+                                                                                                                                    
+                                    119 * Read next record                                                                          
+00009A E000 F0D8 0050 000D8         120     XREAD FILE,80                                                                           
+                                                                                                                                    
+                                                                                                                                    
+0000A0 47F0 F028            00028   122     BC B'1111',TOP Return to top of loop                                                    
+                                                                                                                                    
+                                                                                                                                    
+0000A4                              124 END DS 0H End of loop                                                                       
+                                    125 * Calculate final results and print                                                         
+                                                                                                                                    
+                                                                                                                                    
+0000A4 183B                         127     LR R3,R11 copy total pay into register 2                                                
+0000A6 1D2C                         128     DR R2,R12 divide total net pay by # of employees                                        
+0000A8 1B22                         129     SR R2,R2                                                                                
+                                    130 *   result stored in register 3                                                             
+0000AA 18B3                         131     LR R11,R3 copy register 3 into register 11                                              
+                                    132 *  Convert final results to fullwords and print form                                        
+                                                                                                                                    
+                                                                                                                                    
+0000AC 52B0 F309            00309   134     XDECO R11,AVPAY                                                                         
+0000B0 52C0 F2DE            002DE   135     XDECO R12,ENUM                                                                          
+0000B4 52D0 F33C            0033C   136     XDECO R13,OTNUM                                                                         
+                                    137 *  Print end of payroll report                                                              
+                                                                                                                                    
+                                                                                                                                    
+0000B8 E020 F2C2 0028 002C2         139     XPRNT PRNT1,40                                                                          
+0000BE E020 F2EA 002B 002EA         140     XPRNT PRNT2,43                                                                          
+0000C4 E020 F315 0033 00315         141     XPRNT PRNT3,51                                                                          
+                                    142 *                                                                                           
+0000CA 07FE                         143     BR 14                                                                                   
+0000CC                              144 OTWAG DS CL12                                                                               
+0000D8                              145 FILE DS CL80                                                                                
+000128                              146 OTHRS DS CL12                                                                               
+000134                              147 OTPAY DS CL12                                                                               
+                                    148 *                                                                                           
+000140 F1                           149 HEADR DC C'1'                                                                               
+000141 4040404040404040             150       DC C'                    PAYROLL REPORT -- WIDGETS-R-US'                              
+
+       CSCI 360 ASSIGNMENT 3                                                                                   PAGE    4            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                    151 *                                                                                           
+000173 F0                           152 HEAD1 DC C'0'                                                                               
+                                    153 *                                                                                           
+                                                                                                                                    
+                                                                                                                                    
+000174 4040404040C5D4D7             155       DC C'     EMPLOYEE'                                                                   
+                                                                                                                                    
+                                                                                                                                    
+000181 4040404040404040             157       DC C'        HOURLY'                                                                  
+                                                                                                                                    
+                                                                                                                                    
+00018F 40404040404040C8             159       DC C'       HOURS'                                                                    
+                                                                                                                                    
+                                                                                                                                    
+00019B 4040404040404040             161       DC C'                            GROSS'                                               
+                                                                                                                                    
+                                                                                                                                    
+0001BC 4040404040404040             163       DC C'         NET'                                                                    
+                                    164 *                                                                                           
+0001C8 40                           165 HEAD2 DC C' '                                                                               
+                                                                                                                                    
+                                                                                                                                    
+0001C9 404040404040D5E4             167       DC C'      NUMBER'                                                                    
+                                                                                                                                    
+                                                                                                                                    
+0001D5 4040404040404040             169       DC C'         WAGE'                                                                   
+                                                                                                                                    
+                                                                                                                                    
+0001E2 4040404040404040             171       DC C'         WORKED'                                                                 
+                                                                                                                                    
+                                                                                                                                    
+0001F1 40404040C2D6D5E4             173       DC C'    BONUS'                                                                       
+                                                                                                                                    
+                                                                                                                                    
+0001FA 404040C4C5C4E4C3             175       DC C'   DEDUCTION'                                                                    
+                                                                                                                                    
+                                                                                                                                    
+000206 40404040404040D7             177       DC C'       PAY'                                                                      
+                                                                                                                                    
+                                                                                                                                    
+000210 4040404040404040             179       DC C'          PAY'                                                                   
+                                    180 *                                                                                           
+00021D F0                           181 HEAD3 DC C'0'                                                                               
+00021E 6060606060606060             182       DC C'--------------------------------------------------'                              
+000250 6060606060606060             183       DC C'-----------------------------'                                                   
+                                    184 *                                                                                           
+00026D F0                           185 PRNTL DC C'0'                                                                               
+                                    186 *                                                                                           
+00026E                              187 IDNUM DS CL12                                                                               
+                                    188 *                                                                                           
+00027A                              189 WAGE DS CL12                                                                                
+                                    190 *                                                                                           
+000286                              191 HOURS DS CL12                                                                               
+                                    192 *                                                                                           
+000292                              193 BONUS DS CL12                                                                               
+                                    194 *                                                                                           
+00029E                              195 DDUCT DS CL12                                                                               
+
+       CSCI 360 ASSIGNMENT 3                                                                                   PAGE    5            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                    196 *                                                                                           
+0002AA                              197 GPAY DS CL12                                                                                
+                                    198 *                                                                                           
+0002B6                              199 NPAY DS CL12                                                                                
+                                    200 *                                                                                           
+0002C2 60                           201 PRNT1 DC C'-'                                                                               
+0002C3 E3D6E3C1D340D5E4             202       DC C'TOTAL NUMBER OF EMPLOYEES: '                                                     
+0002DE                              203 ENUM DS CL12                                                                                
+                                    204 *                                                                                           
+0002EA F0                           205 PRNT2 DC C'0'                                                                               
+0002EB C1E5C5D9C1C7C540             206       DC C'AVERAGE NET PAY PER EMPLOYEE: '                                                  
+000309                              207 AVPAY DS CL12                                                                               
+                                    208 *                                                                                           
+000315 F0                           209 PRNT3 DC C'0'                                                                               
+000316 D5E4D4C2C5D940D6             210       DC C'NUMBER OF EMPLOYEES WORKING OVERTIME: '                                          
+00033C                              211 OTNUM DS CL12                                                                               
+                                    212         END ASSIGN3                                                                         
+000348 00000028                     213                =F'40'                                                                       
+00034C 00000002                     214                =F'2'                                                                        
+000350 00000001                     215                =F'1'                                                                        
+
+***  NO   STATEMENTS FLAGGED -  NO   WARNINGS,  NO   ERRORS                                                                         
+
+*** DYNAMIC CORE AREA USED:  LOW:    6656 HIGH:    1092 LEAVING:  485820 FREE BYTES. AVERAGE:       35 BYTES/STMT ***               
+
+*** ASSEMBLY TIME =    0.000 SECS,   216000 STATEMENTS/SEC ***                                                                      
+
+*** PROGRAM EXECUTION BEGINNING - ANY OUTPUT BEFORE EXECUTION TIME MESSAGE IS PRODUCED BY USER PROGRAM ***                          
+
+                    PAYROLL REPORT -- WIDGETS-R-US                                                                                  
+
+     EMPLOYEE        HOURLY       HOURS                            GROSS         NET                                                
+      NUMBER         WAGE         WORKED    BONUS   DEDUCTION       PAY          PAY0                                               
+
+-------------------------------------------------------------------------------055555                                               
+
+      102306         800          35           0        2735       28000       25265-TOTA                                           
+
+      123045         950          47        5000        3186       57950       59764-TOTA                                           
+
+      204980         625          40        2500        3814       25000       23686-TOTA                                           
+
+      324506         835          52        3600        2600       63460       64460-TOTA                                           
+
+      837142         910          43        1500        2000       44590       44090-TOTA                                           
+
+      340712         750          37        4575        3500       27750       28825-TOTA                                           
+
+      452170        1000          46         800        8247       58000       50553-TOTA                                           
+
+      561141         875          20        1000           0       17500       18500-TOTA                                           
+
+      752864         700          48        5200        3710       44800       46290-TOTA                                           
+
+      836629         930          29        6385        1850       26970       31505-TOTA                                           
+
+      890637        1525          55        5525        8217      129625      126933-TOTA                                           
+
+
+TOTAL NUMBER OF EMPLOYEES:           11                                                                                             
+
+AVERAGE NET PAY PER EMPLOYEE:        47261                                                                                          
+
+NUMBER OF EMPLOYEES WORKING OVERTIME:            6                                                                                  
+
+*** EXECUTION TIME =    0.001 SECS.       389 INSTRUCTIONS EXECUTED -   389000 INSTRUCTIONS/SEC ***                                 
+
+*** AM004 - NORMAL USER TERMINATION BY RETURN ***                                                                                   
+!! END OF JES SPOOL FILE !!

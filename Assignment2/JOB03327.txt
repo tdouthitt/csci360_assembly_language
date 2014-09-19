@@ -1,0 +1,162 @@
+                    J E S 2  J O B  L O G  --  S Y S T E M  S Y S 1  --  N O D E  Z O S K C T R         
+
+ 
+22.10.43 JOB03327 ---- THURSDAY,  23 JUN 2011 ----
+22.10.43 JOB03327  IRR010I  USERID KC03DDB  IS ASSIGNED TO THIS JOB.
+22.10.43 JOB03327  ICH70001I KC03DDB  LAST ACCESS AT 22:10:42 ON THURSDAY, JUNE 23, 2011
+22.10.43 JOB03327  $HASP373 KC03DDBA STARTED - INIT 1    - CLASS A - SYS SYS1
+22.10.43 JOB03327  IEF403I KC03DDBA - STARTED - TIME=22.10.43
+22.10.43 JOB03327  IEF404I KC03DDBA - ENDED - TIME=22.10.43
+22.10.43 JOB03327  $HASP395 KC03DDBA ENDED
+
+------ JES2 JOB STATISTICS ------                                                                                                   
+
+
+  23 JUN 2011 JOB EXECUTION DATE                                                                                                    
+
+
+           88 CARDS READ                                                                                                            
+
+
+          132 SYSOUT PRINT RECORDS                                                                                                  
+
+
+            0 SYSOUT PUNCH RECORDS                                                                                                  
+
+
+            9 SYSOUT SPOOL KBYTES                                                                                                   
+
+
+         0.00 MINUTES EXECUTION TIME                                                                                                
+!! END OF JES SPOOL FILE !!
+       1 //KC03DDBA JOB ,'Taylor Douthitt',MSGCLASS=H                            JOB03327
+       2 //STEP1    EXEC  PGM=ASSIST                                                     
+       3 //STEPLIB    DD  DSN=KC02293.ASSIST.LOADLIB,DISP=SHR                            
+       4 //SYSPRINT   DD  SYSOUT=*                                                       
+       5 //SYSIN      DD  *                                                              
+       6 //FT05F001   DD  *                                                              
+       7 //FT06F001   DD SYSOUT=*                                                        
+       8 //                                                                              
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03DDB  LAST ACCESS AT 22:10:42 ON THURSDAY, JUNE 23, 2011
+IEF236I ALLOC. FOR KC03DDBA STEP1
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSIN
+IEF237I JES2 ALLOCATED TO FT05F001
+IEF237I JES2 ALLOCATED TO FT06F001
+IEF142I KC03DDBA STEP1 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC02293.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+IEF285I   KC03DDB.KC03DDBA.JOB03327.D0000103.?         SYSOUT        
+IEF285I   KC03DDB.KC03DDBA.JOB03327.D0000101.?         SYSIN         
+IEF285I   KC03DDB.KC03DDBA.JOB03327.D0000102.?         SYSIN         
+IEF285I   KC03DDB.KC03DDBA.JOB03327.D0000104.?         SYSOUT        
+IEF373I STEP/STEP1   /START 2011174.2210
+IEF374I STEP/STEP1   /STOP  2011174.2210 CPU    0MIN 00.00SEC SRB    0MIN 00.00SEC VIRT   584K SYS   260K EXT       0K SYS   11052K
+IEF375I  JOB/KC03DDBA/START 2011174.2210
+IEF376I  JOB/KC03DDBA/STOP  2011174.2210 CPU    0MIN 00.00SEC SRB    0MIN 00.00SEC
+!! END OF JES SPOOL FILE !!
+
+*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+
+                                                                                                                                    
+
+                                                                                                               PAGE    1            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                      1 ************************************************************                                
+                                      2 *  Program:     Assign2.JCL                                *                                
+                                      3 *  Programmer:  Taylor Douthitt                            *                                
+                                      4 *  NAME: MAIN                                              *                                
+                                      5 *  FUNCTION:                                               *                                
+                                      6 *  INPUT: NONE                                             *                                
+                                      7 *  OUTPUT:                                                 *                                
+                                      8 *  ENTRY CONDS: NONE                                       *                                
+                                      9 *  REGISTER USAGE:   R1 - XDECI Usage                      *                                
+                                     10 *                    R2 - SUM                              *                                
+                                     11 *                    R3 - TOTALSUM                         *                                
+                                     12 *                    R4 - LINE COUNT                       *                                
+                                     13 *                    R5 - NUM1                             *                                
+                                     14 *                    R6 - NUM2                             *                                
+                                     15 *                    R7 - NUM3                             *                                
+                                     16 *                    14 - exit address                     *                                
+                                     17 *                    15 - base register                    *                                
+                                     18 *  EXIT CONDS:  NONE                                       *                                
+                                     19 *  PSEUDOCODE:                                             *                                
+                                     20 *  NOTES:                                                  *                                
+                                     21 ************************************************************                                
+000001                               22 R1 EQU 1                                                                                    
+000002                               23 R2 EQU 2                                                                                    
+000003                               24 R3 EQU 3                                                                                    
+000004                               25 R4 EQU 4                                                                                    
+000005                               26 R5 EQU 5                                                                                    
+000006                               27 R6 EQU 6                                                                                    
+000007                               28 R7 EQU 7                                                                                    
+000000                               29 MAIN CSECT                                                                                  
+000000                               30      USING MAIN,15                                                                          
+000000 1B44                          31      SR R4,R4 Initialize variables                                                          
+000002 1B33                          32      SR R3,R3                                                                               
+000004 E000 F0F0 0050 000F0          33      XREAD FILE,80 Read the first record                                                    
+00000A 4740 F048            00048    34 TOP  BC B'0100',ENDLOOP Top of loop and condition                                           
+00000E 1B22                          35      SR R2,R2 Reset line sum                                                                
+000010 5350 F0F0            000F0    36      XDECI R5,FILE Process record with XDECI                                                
+000014 5361 0000            00000    37      XDECI R6,0(1)                                                                          
+000018 5371 0000            00000    38      XDECI R7,0(1)                                                                          
+00001C 1A25                          39      AR R2,R5       Add values to line sum                                                  
+00001E 1A26                          40      AR R2,R6                                                                               
+000020 1A27                          41      AR R2,R7                                                                               
+000022 5250 F061            00061    42      XDECO R5,NUM1  Change values to character info for print                               
+000026 5260 F077            00077    43      XDECO R6,NUM2                                                                          
+00002A 5270 F08D            0008D    44      XDECO R7,NUM3                                                                          
+00002E 5220 F0A5            000A5    45      XDECO R2,SUM                                                                           
+000032 E020 F05C 0058 0005C          46      XPRNT PLINE,88 Print table of values                                                   
+000038 1A32                          47      AR R3,R2  Add line sum to total                                                        
+00003A 5A40 F058            00058    48      A R4,SPACE Increment line count                                                        
+00003E E000 F0F0 0050 000F0          49      XREAD FILE,80 Read next record                                                         
+000044 47F0 F00A            0000A    50      BC B'1111',TOP Return to top of loop                                                   
+000048                               51 ENDLOOP DS 0H End of loop                                                                   
+000048 5230 F0E4            000E4    52      XDECO R3,TOTAL Total statistics display                                                
+
+                                                                                                               PAGE    2            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+00004C 5240 F0C4            000C4    53      XDECO R4,LINES                                                                         
+000050 E020 F0B1 003F 000B1          54      XPRNT PRINT,63                                                                         
+000056 07FE                          55      BR 14                                                                                  
+000058 00000001                      56 SPACE  DC F'1'                                                                              
+00005C 40                            57 PLINE DC C' '                                                                               
+00005D C1407E40                      58       DC C'A = '                                                                            
+000061                               59 NUM1 DS CL12                                                                                
+00006D 404040404040C240              60      DC C'      B = '                                                                       
+000077                               61 NUM2 DS CL12                                                                                
+000083 404040404040C340              62      DC C'      C = '                                                                       
+00008D                               63 NUM3 DS CL12                                                                                
+000099 404040404040E2E4              64      DC C'      SUM = '                                                                     
+0000A5                               65 SUM  DS CL12                                                                                
+0000B1 40                            66 PRINT DC C' '                                                                               
+0000B2 D5A4948285994096              67       DC C'Number of Lines = '                                                              
+0000C4                               68 LINES DS CL12                                                                               
+0000D0 404040404040C799              69      DC C'      Grand Total = '                                                             
+0000E4                               70 TOTAL DS CL12                                                                               
+0000F0                               71 FILE   DS CL80                                                                              
+                                     72           END MAIN                                                                          
+
+***  NO   STATEMENTS FLAGGED -  NO   WARNINGS,  NO   ERRORS                                                                         
+
+*** DYNAMIC CORE AREA USED:  LOW:    2020 HIGH:     648 LEAVING:  490900 FREE BYTES. AVERAGE:       36 BYTES/STMT ***               
+
+*** ASSEMBLY TIME =    0.000 SECS,    73000 STATEMENTS/SEC ***                                                                      
+
+*** PROGRAM EXECUTION BEGINNING - ANY OUTPUT BEFORE EXECUTION TIME MESSAGE IS PRODUCED BY USER PROGRAM ***                          
+A =           12      B =           34      C =           56      SUM =          102 Nu                                             
+A =           45      B =           98      C =           23      SUM =          166 Nu                                             
+A =           55      B =           88      C =           99      SUM =          242 Nu                                             
+A =           10      B =            9      C =           32      SUM =           51 Nu                                             
+A =           66      B =           22      C =            7      SUM =           95 Nu                                             
+A =           98      B =           76      C =           54      SUM =          228 Nu                                             
+Number of Lines =            6      Grand Total =          884                                                                      
+
+*** EXECUTION TIME =    0.000 SECS.       110 INSTRUCTIONS EXECUTED -   110000 INSTRUCTIONS/SEC ***                                 
+
+*** AM004 - NORMAL USER TERMINATION BY RETURN ***                                                                                   
+!! END OF JES SPOOL FILE !!

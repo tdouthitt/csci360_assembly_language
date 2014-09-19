@@ -1,0 +1,93 @@
+//KC03DDBA JOB ,'TAYLOR DOUTHITT',MSGCLASS=H
+//STEP1   EXEC  PGM=ASSIST,PARM='MACRO=F'
+//STEPLIB   DD  DSN=KC02293.ASSIST.LOADLIB,DISP=SHR
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  * 
+*
+*  MACRO TO USE AN MVI FOLLOWED BY AN MVC TO MOVE A SPECIFIC
+*  CHARACTER TO EACH BYTE OF A RECIEVING FIELD
+*
+         MACRO
+&FILL    FILL  &TARGET,&LEN,&CHAR
+*
+*         
+* CODE TO CHECK IF TARGET IS VALID
+*
+         AIF   ('&TARGET' EQ '').CONT        
+* CODE TO CHECK IF LENGTH IS VALID
+*
+         AIF   ('&LEN' EQ '').CONT1
+* CODE TO CHECK IF LENGTH IS ZERO
+*
+         AIF   (&LEN EQ 0).CONT2
+* CODE TO CHECK IF CHARACTER IS VALID
+*
+         AIF   ('&CHAR' EQ '').CONT3        
+* 
+         AGO   .STRT
+*
+.CONT    MNOTE 'ERROR: TARGET IS MISSING'
+         MEXIT
+*
+.CONT1   MNOTE 'ERROR: LENGTH IS MISSING'
+         MEXIT
+*
+.CONT2   MNOTE 'ERROR: LENGTH IS ZERO'
+         MEXIT 
+*
+.CONT3   MNOTE 'ERROR: USING DEFAULT VALUE OF BLANK'                  
+*
+         LA    5,&TARGET
+*
+         MVI   &TARGET,C' '
+*
+         AGO   .MOVE
+*
+.STRT    LA    5,&TARGET
+*         
+         MVI   0(5),&CHAR
+*
+.MOVE    MVC   1(&LEN-1,5),0(5)        
+*        
+*         
+         MEND
+*
+*  MACRO TO USE AN MVC FOLLOWED BY AN ED
+*
+         MACRO
+&EDIT    EDIT  &DEST,&SEND,&PATT,&LENG
+*
+*
+         AIF   ('&DEST' EQ '').NEXT                 
+*
+         AIF   ('&SEND' EQ '').NEXT1
+*
+         AIF   ('&PATT' EQ '').NEXT2
+*
+         AIF   (&LENG EQ 0).NEXT3
+*
+         AGO   .MVIT
+*
+.NEXT    MNOTE 'ERROR: DESTINATION IS MISSING'
+         MEXIT
+*
+.NEXT1   MNOTE 'ERROR: SENDER IS MISSING'
+         MEXIT
+*
+.NEXT2   MNOTE 'ERROR: PATTERN IS MISSING'
+         MEXIT 
+*
+.NEXT3   MNOTE 'ERROR: LENGTH IS ZERO'
+         MEXIT
+*
+.MVIT    LA    6,&DEST
+         MVC   0(&LENG,6),&PATT
+*
+         ED    0(&LENG,6),&SEND
+*
+*
+         MEND
+//          DD DSN=KC02314.SUMMER11.CSCI360.HW9.DRIVER,DISP=SHR
+//FT05F001  DD DUMMY
+//FT06F001  DD SYSOUT=*
+//

@@ -1,0 +1,68 @@
+1                    J E S 2  J O B  L O G  --  S Y S T E M  S Y S 1  --  N O D E  Z O S K C T R         
+0 
+ 15.11.33 JOB03387 ---- WEDNESDAY, 15 JUN 2011 ----
+ 15.11.33 JOB03387  IRR010I  USERID KC03DDB  IS ASSIGNED TO THIS JOB.
+ 15.11.33 JOB03387  ICH70001I KC03DDB  LAST ACCESS AT 15:11:32 ON WEDNESDAY, JUNE 15, 2011
+ 15.11.33 JOB03387  $HASP373 KC03DDBA STARTED - INIT 1    - CLASS A - SYS SYS1
+ 15.11.33 JOB03387  IEF403I KC03DDBA - STARTED - TIME=15.11.33
+ 15.11.33 JOB03387  -                                              --TIMINGS (MINS.)--            -----PAGING COUNTS----
+ 15.11.33 JOB03387  -STEPNAME PROCSTEP    RC   EXCP   CONN    TCB    SRB  CLOCK   SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 15.11.33 JOB03387  -STEP1                00     36      7    .00    .00     .0     59  BATCH        0     0     0     0
+ 15.11.33 JOB03387  IEF404I KC03DDBA - ENDED - TIME=15.11.33
+ 15.11.33 JOB03387  -KC03DDBA ENDED.  NAME-Taylor Douthitt      TOTAL TCB CPU TIME=    .00 TOTAL ELAPSED TIME=    .0
+ 15.11.33 JOB03387  $HASP395 KC03DDBA ENDED
+0------ JES2 JOB STATISTICS ------                                                                                                   
+-  15 JUN 2011 JOB EXECUTION DATE                                                                                                    
+-           17 CARDS READ                                                                                                            
+-           64 SYSOUT PRINT RECORDS                                                                                                  
+-            0 SYSOUT PUNCH RECORDS                                                                                                  
+-            4 SYSOUT SPOOL KBYTES                                                                                                   
+-         0.00 MINUTES EXECUTION TIME                                                                                                
+ !! END OF JES SPOOL FILE !!
+        1 //KC03DDBA JOB ,'Taylor Douthitt',MSGCLASS=H                            JOB03387
+        2 //STEP1  EXEC PGM=ASSIST                                                        
+        3 //STEPLIB  DD DSN=KC02293.ASSIST.LOADLIB,DISP=SHR                               
+        4 //SYSPRINT DD SYSOUT=*                                                          
+        5 //SYSIN    DD *                                                                 
+        6 //                                                                              
+ !! END OF JES SPOOL FILE !!
+ ICH70001I KC03DDB  LAST ACCESS AT 15:11:32 ON WEDNESDAY, JUNE 15, 2011
+ IEF236I ALLOC. FOR KC03DDBA STEP1
+ IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IEF142I KC03DDBA STEP1 - STEP WAS EXECUTED - COND CODE 0000
+ IGD104I KC02293.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+ IEF285I   KC03DDB.KC03DDBA.JOB03387.D0000102.?         SYSOUT        
+ IEF285I   KC03DDB.KC03DDBA.JOB03387.D0000101.?         SYSIN         
+ IEF373I STEP/STEP1   /START 2011166.1511
+ IEF374I STEP/STEP1   /STOP  2011166.1511 CPU    0MIN 00.00SEC SRB    0MIN 00.00SEC VIRT   584K SYS   260K EXT       0K SYS   10948K
+ IEF375I  JOB/KC03DDBA/START 2011166.1511
+ IEF376I  JOB/KC03DDBA/STOP  2011166.1511 CPU    0MIN 00.00SEC SRB    0MIN 00.00SEC
+ !! END OF JES SPOOL FILE !!
+1*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+0                                                                                                                                    
+0                                                                                                               PAGE    1            
+0  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                       1 ********************************************                                                
+                                       2 *  EXAMPLE PROGRAM                         *                                                
+                                       3 ********************************************                                                
+ 000000                                4 MAIN   CSECT                                                                                
+ 000000                                5        USING MAIN,15                                                                        
+ 000000 1B33                           6        SR    3,3     ZERO FOR TOTAL                                                         
+ 000002 1B44                           7        SR    4,4     ZERO FOR COUNTER                                                       
+ 000004 E160 0000 0000 00000           8        XDUMP                                                                                
+ 00000A 07FE                           9        BR    14                                                                             
+                                      10        END   MAIN                                                                           
+0***  NO   STATEMENTS FLAGGED -  NO   WARNINGS,  NO   ERRORS                                                                         
+0*** DYNAMIC CORE AREA USED:  LOW:     260 HIGH:     320 LEAVING:  492988 FREE BYTES. AVERAGE:       52 BYTES/STMT ***               
+0*** ASSEMBLY TIME =    0.000 SECS,    11000 STATEMENTS/SEC ***                                                                      
+0*** PROGRAM EXECUTION BEGINNING - ANY OUTPUT BEFORE EXECUTION TIME MESSAGE IS PRODUCED BY USER PROGRAM ***                          
+0BEGIN XSNAP - CALL     1 AT C000000A USER REGISTERS                                                                                 
+0 REGS 0-7      F4F4F4F4    F4F4F4F4    F4F4F4F4    00000000    00000000    F4F4F4F4    F4F4F4F4    F4F4F4F4                         
+  REGS 8-15     F4F4F4F4    F4F4F4F4    F4F4F4F4    F4F4F4F4    F4F4F4F4    00000010    FFFE7960    00000000                         
+0                                                                                                                                    
+0*** EXECUTION TIME =    0.000 SECS.         4 INSTRUCTIONS EXECUTED -     4000 INSTRUCTIONS/SEC ***                                 
+0*** FIRST CARD NOT READ: NO CARDS READ:FILE UNOPENED                                                                                
+0*** AM004 - NORMAL USER TERMINATION BY RETURN ***                                                                                   
+ !! END OF JES SPOOL FILE !!
